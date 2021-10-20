@@ -6,7 +6,7 @@ import Procedure from './screens/procedure/Procedure';
 export default function Main() {
   return (
     <View>
-      <Navbar/>
+      {/* <Navbar/> */}
       <Procedure/>
     </View>
   )
