@@ -9,12 +9,8 @@ export default function Checkbox({
       colorUnCheck='',
       colorCheck='',
 }) {
-  const handleCheck = () => {
-    if( onCheck === Function ) onCheck()
-  }
   return (
     <Pressable
-      // onPress={ handleCheck }
       onPress={ () => onCheck() }
     >
       {
