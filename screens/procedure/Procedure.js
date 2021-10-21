@@ -10,7 +10,7 @@ export default function Procedure() {
       <SafeAreaView style={styles.container}>
         <Navbar title="Inscripcion a una carrera" />
         <ScrollView style={styles.scrollView}>
-          <Step/>
+          <Step stepNumber="Paso 1" />
         </ScrollView>
       </SafeAreaView>
     </View>
