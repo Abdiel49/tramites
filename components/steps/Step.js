@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { View, Text, StyleSheet, Pressable } from "react-native";
 import { colors } from "../../styles/colors";
 import Checkbox from "../checkbox/Checkbox";
+import SeeMore from "../seemore/SeeMore";
 
 export default function Step({ stepNumber }) {
-  
+
   const [checkStep, setCheckStep] = useState(false);
 
   const [subTitle, setSubTitle] = useState({
@@ -46,13 +47,16 @@ export default function Step({ stepNumber }) {
 
         {/* subtitles */}
         <View style={styles.containerSimple}>
-          <Pressable
-            // onPress={() => setPosBol( !posBol )}
-            // onPress={() => setSubTitle({ ...subTitle, posBol: !subTitle.posBol})}
-            onPress={() => handleSubtitle('posBol')}
-          >
-            <Text style={styles.textBolt}>POSTULANTE NACIONAL (BOLIVIANO)</Text>
-          </Pressable>
+          <View style= {styles.rowTitle}>
+            <Pressable
+              // onPress={() => setPosBol( !posBol )}
+              // onPress={() => setSubTitle({ ...subTitle, posBol: !subTitle.posBol})}
+              onPress={() => handleSubtitle('posBol')}
+            >
+              <Text style={styles.textBolt}>POSTULANTE NACIONAL (BOLIVIANO)</Text>
+            </Pressable>
+            <SeeMore value={ posBol } />
+          </View>
           {
             posBol && (
               <View style={styles.containerList}>
@@ -95,11 +99,14 @@ export default function Step({ stepNumber }) {
         </View>
 
         <View style={styles.containerSimple}>
-          <Pressable
-            onPress={()=> handleSubtitle( 'posExtran') }
-          >
-            <Text style={styles.textBolt}>POSTULANTE EXTRANJERO</Text>
-          </Pressable>
+          <View style={ styles.rowTitle }>
+            <Pressable
+              onPress={()=> handleSubtitle( 'posExtran') }
+            >
+              <Text style={styles.textBolt}>POSTULANTE EXTRANJERO</Text>
+            </Pressable>
+            <SeeMore value={ posExtran }/>
+          </View>
           {/* text subtitle info */}
           {
             posExtran && (
@@ -136,11 +143,16 @@ export default function Step({ stepNumber }) {
         </View>
 
         <View style={styles.containerSimple}>
-          <Pressable
-            onPress={()=> handleSubtitle('posExtranBol')}
-          >
-            <Text style={styles.textBolt}>POSTULANTE EXTRANJERO DE PADRES BOLIVIANOS</Text>
-          </Pressable>
+          <View style={ styles.rowTitle }>
+            <View styles={ styles.rowTitleText } >
+              <Pressable
+                onPress={()=> handleSubtitle('posExtranBol')}
+              >
+                <Text style={styles.textBolt}>POSTULANTE EXTRANJERO DE PADRES BOLIVIANOS</Text>
+              </Pressable>
+            </View>
+            <SeeMore value={posExtranBol} />
+          </View>
           {/* text subtitle info */}
           {
             posExtranBol && (
@@ -203,7 +215,7 @@ const styles = StyleSheet.create({
   stepTitle: {
     // flex:1,
     // flexWrap:'wrap',
-    flexShrink: 1,
+    // flexShrink: 1,
   },
   stepName: {},
   stepDataContainer: {},
@@ -223,5 +235,17 @@ const styles = StyleSheet.create({
   },
   textItalic: {
     fontStyle: 'italic'
+  },
+  rowTitle:{
+    flexDirection:'row',
+    justifyContent:'space-between'
+  },
+  rowTitleText:{
+    alignContent: "center",
+    display: "flex",
+    flex: 1,
+    flexGrow: 1,
+    margin: 5,
+    padding: 3,
   }
 });
