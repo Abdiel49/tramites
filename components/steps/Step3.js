@@ -24,9 +24,6 @@ export default function Step3({ stepNumber }) {
         <View>
           <View>
             <Text style={styles.textBolt}>Descripcion:</Text>
-            {/* <Text>
-            La matrícula es válida para la gestión 2 / 2017
-            </Text> */}
           </View>
           {/* subtitles */}
 
