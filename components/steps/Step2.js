@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { View, Text, StyleSheet, Pressable } from 'react-native'
 import { colors } from '../../styles/colors';
 import Checkbox from '../checkbox/Checkbox';
+import SeeMore from '../seemore/SeeMore';
 
 export default function Step2({ stepNumber }) {
 
@@ -19,6 +20,7 @@ export default function Step2({ stepNumber }) {
             <Text style={styles.stepTitle}>
               Llenado de sus Datos Biográﬁcos.
             </Text>
+            <SeeMore value={ stepData }/>
           </Pressable>
         </View>
         <Checkbox value={checkStep} onCheck={() => setCheckStep(!checkStep)} />
