@@ -1,6 +1,7 @@
 import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
-import { colors } from '../../styles/colors'
+import { View, Text } from 'react-native'
+import { styles } from './styles'
+
 
 export default function Navbar({title}) {
   return (
@@ -10,17 +11,3 @@ export default function Navbar({title}) {
   )
 }
 
-const styles = StyleSheet.create({
-  container:{
-    backgroundColor: colors.blue_dark,
-    padding:10,
-    alignItems:"center",
-    justifyContent:"center",
-  },
-  title:{
-    marginTop:15,
-    color: colors.primary,
-    fontSize: 22,
-    fontWeight: "bold",
-  }
-})
