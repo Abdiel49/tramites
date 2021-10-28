@@ -8,7 +8,6 @@ import Step3 from "../../components/steps/Step3";
 import Step4 from "../../components/steps/Step4";
 import { gStyles } from "../../styles/gStyles";
 
-
 export default function Procedure() {
   return (
     <View>

@@ -55,8 +55,6 @@ export default function Step({ stepNumber }) {
           <View style={styles.containerSimple}>
             <View style={styles.rowTitle}>
               <Pressable
-                // onPress={() => setPosBol( !posBol )}
-                // onPress={() => setSubTitle({ ...subTitle, posBol: !subTitle.posBol})}
                 onPress={() => handleSubtitle("posBol")}
               >
                 <Text style={styles.textBolt}>
