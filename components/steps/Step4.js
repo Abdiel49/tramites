@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
-import { View, Text, StyleSheet, Pressable } from 'react-native'
-import { colors } from '../../styles/colors';
+import { View, Text, Pressable } from 'react-native'
 import Checkbox from '../checkbox/Checkbox';
 import SeeMore from '../seemore/SeeMore';
+import { styles } from './styles';
 
 export default function Step4({ stepNumber }) {
 
   const [checkStep, setCheckStep] = useState(false);
   const [stepData, setStepData] = useState(false);
-  const [listMat, setListMat] = useState(false);
+
 
   return (
     <View style={styles.stepContainer}>
@@ -51,69 +51,3 @@ export default function Step4({ stepNumber }) {
     </View>
   )
 }
-
-const styles = StyleSheet.create({
-  stepContainer: {
-    backgroundColor: colors.grey,
-    borderRadius: 15,
-    margin: 10,
-    padding: 10,
-  },
-  stepNavbar: {
-    display: "flex",
-    flexDirection: "row",
-    flexGrow: 1,
-    alignContent: "center",
-  },
-  stepNavbar_info: {
-    display: "flex",
-    flex: 1,
-    margin: 5,
-    padding: 3,
-  },
-  stepNumber: {
-    fontWeight: "bold",
-  },
-  stepTitle: {
-    // flex:1,
-    // flexWrap:'wrap',
-    // flexShrink: 1,
-  },
-  stepName: {},
-  stepDataContainer: {},
-  textBolt: {
-    fontWeight: "bold",
-  },
-  containerSimple: {
-    marginTop: 5,
-  },
-  containerList: {
-    display: "flex",
-    flex: 1,
-    marginLeft: 5,
-  },
-  testListItem: {
-    marginVertical: 5,
-  },
-  textItalic: {
-    fontStyle: "italic",
-  },
-  rowTitle: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-  },
-  rowTitleText: {
-    alignContent: "center",
-    display: "flex",
-    flex: 1,
-    flexGrow: 1,
-    margin: 5,
-    padding: 3,
-  },
-  finalTextList: {
-    marginTop: 10,
-  },
-  textSection: {
-    marginVertical: 10,
-  },
-});
