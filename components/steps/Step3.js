@@ -4,10 +4,11 @@ import Checkbox from "../checkbox/Checkbox";
 import SeeMore from "../seemore/SeeMore";
 import { styles } from "./styles";
 
-export default function Step3({ stepNumber }) {
-  const [checkStep, setCheckStep] = useState(false);
+export default function Step3({ stepNumber, value, onCheckStep }) {
+  
   const [stepData, setStepData] = useState(false);
   const [listMat, setListMat] = useState(false);
+  
   return (
     <View style={styles.stepContainer}>
       <View style={styles.stepNavbar}>
@@ -18,7 +19,7 @@ export default function Step3({ stepNumber }) {
             <SeeMore value={ stepData }/>
           </Pressable>
         </View>
-        <Checkbox value={checkStep} onCheck={() => setCheckStep(!checkStep)} />
+        <Checkbox value={ value } onCheck={ onCheckStep } />
       </View>
       {stepData && (
         <View>

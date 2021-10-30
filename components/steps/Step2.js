@@ -4,10 +4,9 @@ import Checkbox from '../checkbox/Checkbox';
 import SeeMore from '../seemore/SeeMore';
 import { styles } from './styles';
 
-export default function Step2({ stepNumber }) {
+export default function Step2({ stepNumber, value, onCheckStep }) {
 
   const [stepData, setStepData] = useState( false );
-  const [checkStep, setCheckStep] = useState(false);
 
   return (
     <View style={ styles.stepContainer }>
@@ -23,7 +22,7 @@ export default function Step2({ stepNumber }) {
             <SeeMore value={ stepData }/>
           </Pressable>
         </View>
-        <Checkbox value={checkStep} onCheck={() => setCheckStep(!checkStep)} />
+        <Checkbox value={ value } onCheck={() => onCheckStep() } />
       </View>
       {
         stepData && (
