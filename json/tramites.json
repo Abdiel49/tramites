@@ -1,0 +1,57 @@
+[{
+    "titulo": "Cambio de Carrera",
+    "descripcion": "El estudiante universitario que desee realizar el cambio de carrera a una carrera o programa, deberá presentar en el Departamento de Registros e Inscripciones la siguiente documentación en sobre manila tamaño oficio rotulado con el código SIS, nombre completo, cédula de identidad, carrera a la que postula y gestión",
+    "requisitos" : [
+        {
+            "requisito": "Matrícula de la gestión anterior."
+        },
+        {
+            "requisito": "Ser alumno regular en la carrera actual."
+        },
+        {
+            "requisito": "Haber cursado dos semestres o un año académico en la carrera o programa de origen como mínimo."
+        },
+        {
+            "requisito": "Kardex firmado por el decano y director de carrera que acredite la aprobación de al menos tres materias convalidables en la carrera o programa de destino."
+        },
+        {
+            "requisito": "Fotocopia de cédula de identidad (confrontada con la original por la sección de archivos)."
+        },
+        {
+            "requisito": "Certificado de la biblioteca de la Facultad acreditando que no debe libros."
+        } 
+    ]
+},
+{
+    "titulo": "Certificado Académico",
+    "descripcion": "Los documentos que se mencionaran acontinuación deber ser presentados en archivador rapido. La entrega del diploma es personal con cedula de identidad vigente o declaración jurada para papás y hermanos para terceras personas con poder notariado exclusivo para el recojo del certificado.",
+    "requisitos": [
+        {
+            "requisito": "Formulario de solicitud para Certificado Académico (Sección Trámites)."
+        },
+        {
+            "requisito": "Certificado de Nacimiento Original (actualizado)."
+        },
+        {
+            "requisito": "Certificado de Notas."
+        },
+        {
+            "requisito": "Certificado Conclusión del Plan de Estudios (extendido por Registros e Inscripciones)."
+        },
+        {
+            "requisito": "Diploma de Bachiller (fotocopia legalizada por Sección Archivos)."
+        },
+        {
+            "requisito": "Cédula de Identidad (fotocopia legalizada por Sección Archivos)."
+        },
+        {
+            "requisito": "Resolución Consejo Facultativo (fotocopia)."
+        },
+        {
+            "requisito": "Dos fotografías actuales 4x5 fondo rojo. Varones: Traje formal. Damas: Camisa blanca."
+        },
+        {
+            "requisito": "Derecho de Impresión Bs. 458.-"
+        }
+    ]   
+}]
