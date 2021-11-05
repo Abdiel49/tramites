@@ -1,17 +1,32 @@
-import React from 'react';
-import { StyleSheet, TouchableOpacity, View } from 'react-native';
+import React, { useContext } from 'react';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Navbar from '../nav/Navbar';
 
-const Home = () => {
+const Home = ({navigation}) => {
 
-    const tramites = require('../../json/tramites.json');
+    const tramites = require('../../json/tramites.json')
 
     return(
         <View>
-            <Navbar title={ 'Tramites FCyT' }/>
+            <TouchableOpacity
+                style={ styles.buttonStyle }
+                onPress={ () => navigation.navigate('tramiteInscripcion') }
+            >
+                <Text style={ styles.texteStyle }>
+                    Inscripcion a una Carrera
+                </Text>
+            </TouchableOpacity>
             {
                 tramites.map((tramite) => (
-                    <TouchableOpacity style={ styles.buttonStyle }>{tramite.titulo}</TouchableOpacity> 
+                    <TouchableOpacity
+                        key={ tramite.id} 
+                        style={ styles.buttonStyle }
+                        onPress={() => navigation.navigate(tramite.nombre) }
+                    >
+                        <Text style={styles.texteStyle}>
+                            {tramite.titulo}
+                        </Text>      
+                    </TouchableOpacity> 
                 ))  
             }
         </View>
@@ -21,14 +36,17 @@ const Home = () => {
 const styles = StyleSheet.create({
     buttonStyle: {
         backgroundColor: '#0F354A',
-        color: 'white',
         marginTop: 10,
         marginLeft: 10,
         marginRight: 10,
         padding: 20,
         borderRadius: 10,
-        fontFamily: 'Helvetica, Arial'
-    } 
+    },
+
+    texteStyle: {
+        color: 'white',
+        //fontFamily: 'Helvetica, Arial'
+    }
 });
 
 export default Home;

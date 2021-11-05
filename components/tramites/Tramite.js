@@ -58,8 +58,7 @@ const Tramite = ({info}) => {
     return(
         <View>
             <SafeAreaView style={{backgroundColor: "snow"}}>
-                <ScrollView>
-                <Navbar title={info.titulo}/>
+                <ScrollView>        
                     <Text style={ estilos.conttexto }>
                         {info.descripcion}
                     </Text>

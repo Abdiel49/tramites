@@ -1,8 +1,9 @@
-import React from 'react';
-import { View } from 'react-native';
+import React, { useContext } from 'react';
 import Tramite from './Tramite';
 
-const TramiteCarrera = ({datos}) => {
+const TramiteCarrera = () => {
+
+    const datos = require('../../json/tramites.json')
 
     return(
         <Tramite 
