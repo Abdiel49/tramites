@@ -10,6 +10,7 @@ import Step2 from "../../components/steps/Step2";
 import Step3 from "../../components/steps/Step3";
 import Step4 from "../../components/steps/Step4";
 import { gStyles } from "../../styles/gStyles";
+import Progress from "../../components/progressBar/Progress";
 
 export default function Procedure() {
   
@@ -55,6 +56,7 @@ export default function Procedure() {
     <View>
       <SafeAreaView style={ gStyles.safeAreaContainer }>
         {/* <Navbar title="Inscripcion a una carrera" /> */}
+        <Progress value={20} data={ tramitesStorage }/>
         <ScrollView>
           <Step 
             stepNumber="Paso 1"  
