@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { View, SafeAreaView, ScrollView } from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useNavigation } from '@react-navigation/native';
 
 import StepFooter from "../../components/footer/StepFooter";
 import Navbar from "../../components/nav/Navbar";
@@ -12,6 +13,7 @@ import { gStyles } from "../../styles/gStyles";
 
 export default function Procedure() {
   
+  // console.log("navigator from procedure", navigator.setOptions)
   const [tramitesStorage, setTramitesStorage] = useState( {} )
   // get data from asyngStorage
   const getData = async () => {
@@ -52,7 +54,7 @@ export default function Procedure() {
   return (
     <View>
       <SafeAreaView style={ gStyles.safeAreaContainer }>
-        <Navbar title="Inscripcion a una carrera" />
+        {/* <Navbar title="Inscripcion a una carrera" /> */}
         <ScrollView>
           <Step 
             stepNumber="Paso 1"  

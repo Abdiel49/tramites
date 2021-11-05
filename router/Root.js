@@ -3,17 +3,34 @@ import React from 'react'
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Procedure from '../screens/procedure/Procedure';
+import { colors } from '../styles/colors';
 
 const RootStack = createStackNavigator();
 
 export default function Root() {
   return (
     <NavigationContainer>
-      <RootStack.Navigator>
+      <RootStack.Navigator
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: colors.blue,
+            
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}
+      >
 
         <RootStack.Screen
-          name="Tramite De inscripcion" 
+          name="tramiteInscripcion" 
           component={ Procedure } 
+          options={{
+            title: 'Inscripcion a una carrera',
+            
+          }}
+          naviga
         />
       
       </RootStack.Navigator>
