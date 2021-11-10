@@ -10,11 +10,18 @@ import Step2 from "../../components/steps/Step2";
 import Step3 from "../../components/steps/Step3";
 import Step4 from "../../components/steps/Step4";
 import { gStyles } from "../../styles/gStyles";
+import Progress from "../../components/progressBar/Progress";
 
 export default function Procedure() {
   
   // console.log("navigator from procedure", navigator.setOptions)
-  const [tramitesStorage, setTramitesStorage] = useState( {} )
+  
+  const [tramitesStorage, setTramitesStorage] = useState( {
+    step1:false,
+    step2:false,
+    step3:false,
+    step4:false
+  } )
   // get data from asyngStorage
   const getData = async () => {
     try {
@@ -42,7 +49,9 @@ export default function Procedure() {
       let data = await getData();
       setTramitesStorage( data )
     }
-    loadData()
+    if( !tramitesStorage ){
+      loadData()
+    }
   },[])
 
   // store data when some checkbox change
@@ -55,6 +64,11 @@ export default function Procedure() {
     <View>
       <SafeAreaView style={ gStyles.safeAreaContainer }>
         {/* <Navbar title="Inscripcion a una carrera" /> */}
+        
+        <Progress 
+          data={ tramitesStorage }
+        />
+
         <ScrollView>
           <Step 
             stepNumber="Paso 1"  
