@@ -49,7 +49,9 @@ export default function Procedure() {
       let data = await getData();
       setTramitesStorage( data )
     }
-    loadData()
+    if( !tramitesStorage ){
+      loadData()
+    }
   },[])
 
   // store data when some checkbox change
