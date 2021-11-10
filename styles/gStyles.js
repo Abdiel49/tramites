@@ -3,6 +3,6 @@ import { colors } from "./colors";
 
 export const gStyles = StyleSheet.create({
   safeAreaContainer: {
-    backgroundColor: colors.blue,
+    backgroundColor: colors.light2,
   },
 })
