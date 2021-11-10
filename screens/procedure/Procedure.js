@@ -15,7 +15,13 @@ import Progress from "../../components/progressBar/Progress";
 export default function Procedure() {
   
   // console.log("navigator from procedure", navigator.setOptions)
-  const [tramitesStorage, setTramitesStorage] = useState( {} )
+  
+  const [tramitesStorage, setTramitesStorage] = useState( {
+    step1:false,
+    step2:false,
+    step3:false,
+    step4:false
+  } )
   // get data from asyngStorage
   const getData = async () => {
     try {
@@ -64,22 +70,22 @@ export default function Procedure() {
         <ScrollView>
           <Step 
             stepNumber="Paso 1"  
-            value={ tramitesStorage.step1 || false } 
+            value={ tramitesStorage.step1 } 
             onCheckStep={ ()=> setTramitesStorage({...tramitesStorage, step1: !tramitesStorage.step1 })} 
           />
           <Step2 
             stepNumber="Paso 2" 
-            value={ tramitesStorage.step2 || false } 
+            value={ tramitesStorage.step2 } 
             onCheckStep={ ()=> setTramitesStorage({...tramitesStorage, step2: !tramitesStorage.step2 })} 
           />
           <Step3 
             stepNumber="Paso 3" 
-            value={ tramitesStorage.step3 || false } 
+            value={ tramitesStorage.step3 } 
             onCheckStep={ ()=> setTramitesStorage({...tramitesStorage, step3: !tramitesStorage.step3 })} 
           />
           <Step4 
             stepNumber="Paso 4" 
-            value={ tramitesStorage.step4 || false } 
+            value={ tramitesStorage.step4 } 
             onCheckStep={ ()=> setTramitesStorage({...tramitesStorage, step4: !tramitesStorage.step4 })} 
           />
           <StepFooter/>
