@@ -18,19 +18,18 @@ export default function Progress({ data = {} }) {
       const per = items * value;
       setPercent( Math.round( per ) );
     } 
-  }, [data])
-  // console.log( data )
+  }, [data]);
 
   return (
     <View style={ styles.container}>
       <View style={ styles.progress }>
         
-        <Text style={ styles.textDone}>{ percent }</Text>
+        <Text style={ styles.textDone}>{ percent } %</Text>
         <View style={ styles.progressBar }>
           
           <ProgressBar 
             animated={ true }
-            backgroundColor={ colors.blue_dark } 
+            backgroundColor={ percent === 100? colors.green : colors.blue_dark } 
             height={ 8 } 
             progress={ percent } 
             trackColor={ colors.grey }
@@ -52,12 +51,6 @@ const styles = StyleSheet.create({
     // backgroundColor: colors.grey2,
     flexDirection:'row',
     borderRadius:10
-  },
-  progressDone: {
-    // backgroundColor: colors.blue,
-    // borderRadius:10,
-    // justifyContent:'center',
-    // alignItems:'center'
   },
   textDone:{
     marginVertical:5,

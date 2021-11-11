@@ -16,12 +16,14 @@ export default function Procedure() {
   
   // console.log("navigator from procedure", navigator.setOptions)
   
-  const [tramitesStorage, setTramitesStorage] = useState( {
+  const initState = {
     step1:false,
     step2:false,
     step3:false,
     step4:false
-  } )
+  };
+  
+  const [tramitesStorage, setTramitesStorage] = useState( initState );
   // get data from asyngStorage
   const getData = async () => {
     try {
@@ -29,6 +31,7 @@ export default function Procedure() {
       if(value !== null) {
         return JSON.parse( value );
       }
+      else return null;
     } catch(e) {
       console.error(e)
     }
@@ -46,12 +49,26 @@ export default function Procedure() {
   // load data when component is mounted
   useEffect(() => {
     async function loadData(){
-      let data = await getData();
-      setTramitesStorage( data )
+      const data = await getData();
+      if( !!data ){
+        setTramitesStorage( data );
+      } else {
+        setTramitesStorage( initState )
+      }
     }
-    if( !tramitesStorage ){
+    async function localDataExists(){
+      let data = await getData();
+      return !!data;
+    } 
+    // setTramitesStorage( initState )
+    if( localDataExists() ){
       loadData()
     }
+
+    // if( !tramitesStorage ){
+    //   loadData()
+    // }
+    // if( )
   },[])
 
   // store data when some checkbox change
