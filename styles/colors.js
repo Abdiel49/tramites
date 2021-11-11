@@ -8,5 +8,7 @@ export const colors = {
   primary: "#F20505",
   secondary: "#F21D2F",
   light2: '#F4F4F4',
+  bgColor: 'snow',
+  bgStepColor: 'rgb(240, 240, 240)',
   green: '#319000',
 }
