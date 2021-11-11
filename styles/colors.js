@@ -8,4 +8,5 @@ export const colors = {
   primary: "#F20505",
   secondary: "#F21D2F",
   light2: '#F4F4F4',
+  green: '#319000',
 }
