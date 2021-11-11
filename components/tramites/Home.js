@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
 
     texteStyle: {
         color: 'white',
-        //fontFamily: 'Helvetica, Arial'
+        fontSize: 17
     }
 });
 

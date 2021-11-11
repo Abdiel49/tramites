@@ -61,7 +61,7 @@ export default function Root() {
           name={ '@CertAcad' } 
           component={ TramiteCertificado } 
           options={{
-            title: 'Certificado Academico',
+            title: 'Certificado Académico',
             
           }}
           naviga
