@@ -10,7 +10,7 @@ const Requisito = ({style ,req , check, onChecked}) => {
                 value={check}
                 onCheck={() => onChecked()}
             />
-            <Text style={{fontSize: 15}}>
+            <Text style={{fontSize: 15, paddingHorizontal: 16}}>
                 {req}
             </Text>
         </View>

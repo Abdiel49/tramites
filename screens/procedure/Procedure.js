@@ -11,6 +11,7 @@ import Step3 from "../../components/steps/Step3";
 import Step4 from "../../components/steps/Step4";
 import { gStyles } from "../../styles/gStyles";
 import Progress from "../../components/progressBar/Progress";
+import tramiteStyle from "../../styles/tramiteStyle";
 
 export default function Procedure() {
   
@@ -69,7 +70,7 @@ export default function Procedure() {
           data={ tramitesStorage }
         />
 
-        <ScrollView>
+        <ScrollView style={tramiteStyle.scrollViewCont}>
           <Step 
             stepNumber="Paso 1"  
             value={ tramitesStorage.step1 } 

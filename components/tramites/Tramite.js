@@ -1,7 +1,12 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { useEffect, useState } from 'react';
 import { SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { gStyles } from '../../styles/gStyles';
+import tramiteStyle from '../../styles/tramiteStyle';
+import StepFooter from '../footer/StepFooter';
 import Navbar from '../nav/Navbar';
+import { styles } from '../nav/styles';
+import Progress from '../progressBar/Progress';
 import Requisito from './Requisito';
 
 const Tramite = ({info}) => {
@@ -57,9 +62,13 @@ const Tramite = ({info}) => {
     
     return(
         <View>
-            <SafeAreaView style={{backgroundColor: "snow"}}>
-                <ScrollView>        
-                    <Text style={ estilos.conttexto }>
+            <SafeAreaView style={gStyles.safeAreaContainer}>
+                <View><Progress 
+                    data={ tramitesStorage }
+                /></View>
+                
+                <ScrollView style={ tramiteStyle.scrollViewCont }>        
+                    <Text style={ tramiteStyle.stepCont }>
                         {info.descripcion}
                     </Text>
                     <Text style={{fontWeight: 'bold'}}>Requisitos:</Text>
@@ -67,36 +76,20 @@ const Tramite = ({info}) => {
                         info.requisitos.map(req => (
                             <Requisito
                                 key={req.id}
-                                style={ estilos.conttexto }
+                                style={ tramiteStyle.stepCont2 }
                                 req={ req.requisito }
                                 check={ tramitesStorage[req.id] }
                                 onChecked={ () => setTramitesStorage({...tramitesStorage, [req.id]: !tramitesStorage[req.id]}) }
                             />
                         ))
                         }
+                    <View style={{padding: 50}}>
+                    </View>
                 </ScrollView>
             </SafeAreaView>            
         </View>
     );
     
 };
-
-const estilos = StyleSheet.create({
-    conttexto: {
-        position: 'relative',
-        backgroundColor: '#F1F1F1',
-        color: 'black',
-        display: 'flex',
-        marginTop: 10,
-        marginBottom: 10,
-        padding: 15,
-        borderRightWidth: 4,
-        borderBottomWidth: 4,
-        borderRightColor: 'rgba(181,181,181,0.5)',
-        borderBottomColor: 'rgba(181,181,181,0.5)',
-        borderRadius: 20,
-        fontSize: 15
-    }
-});
 
 export default Tramite;
