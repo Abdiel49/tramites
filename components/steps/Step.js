@@ -38,8 +38,11 @@ export default function Step({ stepNumber, value, onCheckStep }) {
               2017, en la Oficina de Registros (Edificio Multiacadémico planta
               baja) en el siguiente horario 08:30 a 12:00 o 14:30 a 18:00:
             </Text>
-            <SeeMore value={ stepData }/>
           </Pressable>
+          <SeeMore 
+            value={ stepData } 
+            onPress={()=> setStepData( !stepData )}
+          />
         </View>
 
         <Checkbox value={ value } onCheck={() => onCheckStep() } />
@@ -62,7 +65,10 @@ export default function Step({ stepNumber, value, onCheckStep }) {
                   POSTULANTE NACIONAL (BOLIVIANO)
                 </Text>
               </Pressable>
-              <SeeMore value={posBol} />
+              <SeeMore 
+                value={posBol} 
+                onPress={() => handleSubtitle("posBol")}
+              />
             </View>
             {posBol && (
               <View style={styles.containerList}>
@@ -106,10 +112,15 @@ export default function Step({ stepNumber, value, onCheckStep }) {
 
           <View style={styles.containerSimple}>
             <View style={styles.rowTitle}>
-              <Pressable onPress={() => handleSubtitle("posExtran")}>
+              <Pressable 
+                onPress={() => handleSubtitle("posExtran")}
+              >
                 <Text style={styles.textBolt}>POSTULANTE EXTRANJERO</Text>
               </Pressable>
-              <SeeMore value={posExtran} />
+              <SeeMore 
+                value={posExtran}
+                onPress={() => handleSubtitle("posExtran")} 
+              />
             </View>
             {/* text subtitle info */}
             {posExtran && (
@@ -147,13 +158,18 @@ export default function Step({ stepNumber, value, onCheckStep }) {
           <View style={styles.containerSimple}>
             <View style={styles.rowTitle}>
               <View styles={styles.rowTitleText}>
-                <Pressable onPress={() => handleSubtitle("posExtranBol")}>
+                <Pressable 
+                  onPress={() => handleSubtitle("posExtranBol")}
+                >
                   <Text style={styles.textBolt}>
                     POSTULANTE EXTRANJERO DE PADRES BOLIVIANOS
                   </Text>
                 </Pressable>
               </View>
-              <SeeMore value={posExtranBol} />
+              <SeeMore 
+                value={posExtranBol} 
+                onPress={() => handleSubtitle("posExtranBol")}
+              />
             </View>
             {/* text subtitle info */}
             {posExtranBol && (

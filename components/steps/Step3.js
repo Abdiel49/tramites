@@ -14,13 +14,21 @@ export default function Step3({ stepNumber, value, onCheckStep }) {
     <View style={tramiteStyle.stepCont}>
       <View style={styles.stepNavbar}>
         <View style={styles.stepNavbar_info}>
-          <Pressable onPress={() => setStepData(!stepData)}>
+          <Pressable 
+            onPress={() => setStepData(!stepData)}
+          >
             <Text style={styles.stepNumber}>{stepNumber}</Text>
             <Text style={styles.stepTitle}>Venta de Matrícula.</Text>
-            <SeeMore value={ stepData }/>
           </Pressable>
+          <SeeMore 
+            value={ stepData }
+            onPress={() => setStepData(!stepData)}
+          />
         </View>
-        <Checkbox value={ value } onCheck={ onCheckStep } />
+        <Checkbox 
+          value={ value } 
+          onCheck={ onCheckStep } 
+        />
       </View>
       {stepData && (
         <View>
@@ -40,7 +48,10 @@ export default function Step3({ stepNumber, value, onCheckStep }) {
                   La matrícula es válida para la gestión 2 / 2017
                 </Text>
               </Pressable>
-              <SeeMore value={listMat} />
+              <SeeMore 
+                value={listMat} 
+                onPress={() => setListMat(!listMat)}
+              />
             </View>
             {listMat && (
               <View style={styles.containerList}>

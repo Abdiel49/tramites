@@ -1,15 +1,18 @@
-import React, { useState } from 'react'
-import { Pressable } from 'react-native'
-import Minus from './svg/Minus'
-import Plus from './svg/Plus'
+import React, { useState } from 'react';
+import { Pressable } from 'react-native';
+import DownArrow from './svg/DownArrow';
+import UpArrow from './svg/UpArrow';
 
-export default function SeeMore({ value = false, onPress}) {
-  const [check, setCheck] = useState( value );
+export default function SeeMore({ 
+    value = false,
+    onPress
+}) {
+  // const [check, setCheck] = useState( value );
   return (
     <Pressable
-      // onPress={ () => onPress() }
+      onPress={ () => onPress() }
     >
-      { value ? <Minus /> : <Plus /> }
+      { value ? <UpArrow /> : <DownArrow /> }
     </Pressable>
   )
 }

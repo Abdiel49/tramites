@@ -13,11 +13,16 @@ export default function Step4({ stepNumber, value, onCheckStep }) {
     <View style={tramiteStyle.stepCont}>
       <View style={styles.stepNavbar}>
         <View style={styles.stepNavbar_info}>
-          <Pressable onPress={() => setStepData(!stepData)}>
+          <Pressable 
+            onPress={() => setStepData(!stepData)}
+          >
             <Text style={styles.stepNumber}>{stepNumber}</Text>
             <Text style={styles.stepTitle}>Inscripción a sus materias por Internet.</Text>
-            <SeeMore value={ stepData }/>
           </Pressable>
+          <SeeMore 
+            value={ stepData }
+            onPress={() => setStepData(!stepData)}
+          />
         </View>
         <Checkbox value={ value } onCheck={ onCheckStep } />
       </View>

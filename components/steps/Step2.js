@@ -20,10 +20,16 @@ export default function Step2({ stepNumber, value, onCheckStep }) {
             <Text style={styles.stepTitle}>
               Llenado de sus Datos Biográﬁcos.
             </Text>
-            <SeeMore value={ stepData }/>
           </Pressable>
+          <SeeMore 
+            value={ stepData }
+            onPress={ ()=> setStepData( !stepData )}
+          />
         </View>
-        <Checkbox value={ value } onCheck={() => onCheckStep() } />
+        <Checkbox 
+          value={ value } 
+          onCheck={() => onCheckStep() } 
+        />
       </View>
       {
         stepData && (
