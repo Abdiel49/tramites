@@ -5,7 +5,7 @@ import Checkbox from '../checkbox/Checkbox';
 const Requisito = ({style ,req , check, onChecked}) => {
 
     return(
-        <View style={style}>
+        <View testID="req-test" style={style}>
             <Checkbox 
                 value={check}
                 onCheck={() => onChecked()}

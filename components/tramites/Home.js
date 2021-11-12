@@ -13,7 +13,7 @@ const Home = ({navigation}) => {
                 onPress={ () => navigation.navigate('tramiteInscripcion') }
             >
                 <Text style={ styles.texteStyle }>
-                    Inscripcion a una Carrera
+                    Inscripción a una Carrera
                 </Text>
             </TouchableOpacity>
             {
