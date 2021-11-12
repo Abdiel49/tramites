@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { View, Text, Pressable } from 'react-native'
+import tramiteStyle from '../../styles/tramiteStyle';
 import Checkbox from '../checkbox/Checkbox';
 import SeeMore from '../seemore/SeeMore';
 import { styles } from './styles';
@@ -9,7 +10,7 @@ export default function Step4({ stepNumber, value, onCheckStep }) {
   const [stepData, setStepData] = useState(false);
 
   return (
-    <View style={styles.stepContainer}>
+    <View style={tramiteStyle.stepCont}>
       <View style={styles.stepNavbar}>
         <View style={styles.stepNavbar_info}>
           <Pressable onPress={() => setStepData(!stepData)}>
