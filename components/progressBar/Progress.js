@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
-import { colors } from '../../styles/colors'
 import ProgressBar from "react-native-animated-progress";
+import { colors } from '../../styles/colors'
 
 export default function Progress({ data = {} }) {
   
@@ -24,9 +24,16 @@ export default function Progress({ data = {} }) {
     <View style={ styles.container}>
       <View style={ styles.progress }>
         
-        <Text style={ styles.textDone}>{ percent } %</Text>
-        <View style={ styles.progressBar }>
-          
+        <Text 
+          style={ styles.textDone}
+          testID="progressBar.percent"
+        >
+          { percent } %
+        </Text>
+        <View 
+          style={ styles.progressBar }
+          testID="progressBar.progressBar"
+        >  
           <ProgressBar 
             animated={ true }
             backgroundColor={ percent === 100? colors.green : colors.blue_dark } 
@@ -34,7 +41,6 @@ export default function Progress({ data = {} }) {
             progress={ percent } 
             trackColor={ colors.grey }
           />
-
         </View>
 
       </View>
