@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { View, Text, Pressable } from "react-native";
-import tramiteStyle from "../../styles/tramiteStyle";
 import Checkbox from "../checkbox/Checkbox";
 import SeeMore from "../seemore/SeeMore";
-import { styles } from "./styles";
+import { styles } from "./styles/step";
 
 export default function Step3({ stepNumber, value, onCheckStep }) {
   
@@ -11,7 +10,7 @@ export default function Step3({ stepNumber, value, onCheckStep }) {
   const [listMat, setListMat] = useState(false);
   
   return (
-    <View style={tramiteStyle.stepCont}>
+    <View style={styles.stepCont}>
       <View style={styles.stepNavbar}>
         <View style={styles.stepNavbar_info}>
           <Pressable 
@@ -40,8 +39,6 @@ export default function Step3({ stepNumber, value, onCheckStep }) {
           <View style={styles.containerSimple}>
             <View style={styles.rowTitle}>
               <Pressable
-                // onPress={() => setPosBol( !posBol )}
-                // onPress={() => setSubTitle({ ...subTitle, posBol: !subTitle.posBol})}
                 onPress={() => setListMat(!listMat)}
               >
                 <Text style={styles.textBolt}>
@@ -65,7 +62,7 @@ export default function Step3({ stepNumber, value, onCheckStep }) {
                   Cajas de la Facultad
                 </Text>
 
-                {/* va depues de la lista */}
+                {/* va despues de la lista */}
                 <Text style={styles.finalTextList}>
                   Nota: La compra del Aporte Estudiantil es estrictamente
                   personal. No pierda el recibo de caja, porque contiene sus 5

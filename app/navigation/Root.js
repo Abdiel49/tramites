@@ -1,17 +1,16 @@
-import React, { useContext } from 'react'
-// import { View, Text } from 'react-native'
+import React from 'react'
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import Procedure from '../screens/procedure/Procedure';
 import { colors } from '../styles/colors';
-import TramiteCarrera from '../components/tramites/TramiteCarrera';
-import TramiteCertificado from '../components/tramites/TramiteCertificado';
-import Home from '../components/tramites/Home';
+import Home from '../components/home/HomeScreen';
+import Procedure from '../components/procedure/ProcedureScreen';
+import TramiteCarrera from '../components/tramite/TramiteCarrera';
+import TramiteCertificado from '../components/tramite/TramiteCertificado';
 
 const RootStack = createStackNavigator();
 
 export default function Root() {
-  const datos = require('../json/tramites.json')
+  const datos = require('../assets/tramites.json')
   return (
     <NavigationContainer>
       <RootStack.Navigator

@@ -1,7 +1,22 @@
 import { StyleSheet } from "react-native";
-import { colors } from "../../styles/colors";
+import { colors } from "../../../styles/colors";
 
 export const styles = StyleSheet.create({
+  stepCont: {
+    position: 'relative',
+    backgroundColor: colors.bgStepColor,
+    color: 'black',
+    display: 'flex',
+    marginTop: 10,
+    marginBottom: 10,
+    padding: 15,
+    borderRightWidth: 4,
+    borderBottomWidth: 4,
+    borderRightColor: 'rgba(181,181,181,0.5)',
+    borderBottomColor: 'rgba(181,181,181,0.5)',
+    borderRadius: 20,
+    fontSize: 15,
+  },
   stepContainer: {
     backgroundColor: colors.grey,
     borderRadius: 15,
@@ -22,11 +37,6 @@ export const styles = StyleSheet.create({
   },
   stepNumber: {
     fontWeight: "bold",
-  },
-  stepTitle: {
-    // flex:1,
-    // flexWrap:'wrap',
-    // flexShrink: 1,
   },
   stepName: {},
   stepDataContainer: {},
@@ -59,4 +69,7 @@ export const styles = StyleSheet.create({
     margin: 5,
     padding: 3,
   },
+  scrollViewCont: {
+    padding: 15,
+  }
 })
