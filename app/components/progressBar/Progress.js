@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import ProgressBar from "react-native-animated-progress";
-import { colors } from '../../styles/colors'
+import { colors } from '../../styles/colors';
 
 export default function Progress({ data = {} }) {
   

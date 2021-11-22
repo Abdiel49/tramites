@@ -1,6 +1,5 @@
-import React from 'react';
 import { StyleSheet } from 'react-native';
-import { colors } from './colors';
+import { colors } from '../../../styles/colors';
 
 const tramiteStyle = StyleSheet.create({
     stepCont: {
@@ -17,6 +16,7 @@ const tramiteStyle = StyleSheet.create({
         borderBottomColor: 'rgba(181,181,181,0.5)',
         borderRadius: 20,
         fontSize: 15,
+        flexDirection: 'row'
     },
     stepCont2: {
         position: 'relative',

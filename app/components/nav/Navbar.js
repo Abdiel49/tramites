@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { View, Text } from 'react-native'
-import { styles } from './styles'
-import { useNavigation } from '@react-navigation/native';
+import { styles } from './styles/styles'
 import BackIcon from './BackIcon';
 
 

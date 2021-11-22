@@ -1,20 +1,17 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { useEffect, useState } from 'react';
-import { SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native';
-import { gStyles } from '../../styles/gStyles';
-import tramiteStyle from '../../styles/tramiteStyle';
-import StepFooter from '../footer/StepFooter';
-import Navbar from '../nav/Navbar';
-import { styles } from '../nav/styles';
+import { SafeAreaView, ScrollView, Text, View } from 'react-native';
+import { gStyles } from '../../styles/globalStyles';
 import Progress from '../progressBar/Progress';
 import Requisito from './Requisito';
+import tramiteStyle from './styles/tramiteItem';
 
 const Tramite = ({info}) => {
     const [tramitesStorage, setTramitesStorage] = useState([]);
 
     const generarChecks = () => {
         let listaChecks = [info.requisitos.length]
-       for(let i = 0; i < info.requisitos.length; i++){
+        for(let i = 0; i < info.requisitos.length; i++){
             listaChecks[i] = false;
         }
         return listaChecks; 

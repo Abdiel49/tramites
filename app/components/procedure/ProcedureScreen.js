@@ -1,21 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { View, SafeAreaView, ScrollView } from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useNavigation } from '@react-navigation/native';
 
-import StepFooter from "../../components/footer/StepFooter";
-import Navbar from "../../components/nav/Navbar";
-import Step from "../../components/steps/Step";
-import Step2 from "../../components/steps/Step2";
-import Step3 from "../../components/steps/Step3";
-import Step4 from "../../components/steps/Step4";
-import { gStyles } from "../../styles/gStyles";
-import Progress from "../../components/progressBar/Progress";
-import tramiteStyle from "../../styles/tramiteStyle";
+import StepFooter from "../footer/StepFooter";
+import Progress from "../progressBar/Progress";
+import Step from "./Step";
+import Step2 from "./Step2";
+import Step3 from "./Step3";
+import Step4 from "./Step4";
+import { gStyles } from "../../styles/globalStyles";
 
 export default function Procedure() {
-  
-  // console.log("navigator from procedure", navigator.setOptions)
   
   const initState = {
     step1:false,
@@ -61,15 +56,9 @@ export default function Procedure() {
       let data = await getData();
       return !!data;
     } 
-    // setTramitesStorage( initState )
     if( localDataExists() ){
       loadData()
     }
-
-    // if( !tramitesStorage ){
-    //   loadData()
-    // }
-    // if( )
   },[])
 
   // store data when some checkbox change
@@ -81,19 +70,18 @@ export default function Procedure() {
   return (
     <View>
       <SafeAreaView style={ gStyles.safeAreaContainer }>
-        {/* <Navbar title="Inscripcion a una carrera" /> */}
         
         <Progress 
           data={ tramitesStorage }
         />
 
-        <ScrollView style={tramiteStyle.scrollViewCont}>
+        <ScrollView style={gStyles.scrollViewCont}>
           <Step 
             stepNumber="Paso 1"  
             value={ tramitesStorage.step1 } 
             onCheckStep={ ()=> setTramitesStorage({...tramitesStorage, step1: !tramitesStorage.step1 })} 
           />
-          <Step2 
+          <Step2
             stepNumber="Paso 2" 
             value={ tramitesStorage.step2 } 
             onCheckStep={ ()=> setTramitesStorage({...tramitesStorage, step2: !tramitesStorage.step2 })} 

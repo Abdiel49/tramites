@@ -1,9 +1,9 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import Tramite from './Tramite';
 
 const TramiteCertificado = () => {
 
-    const datos = require('../../json/tramites.json')
+    const datos = require('../../assets/tramites.json')
 
     return(
         <Tramite 

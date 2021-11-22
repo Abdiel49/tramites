@@ -1,10 +1,9 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import Navbar from '../nav/Navbar';
 
 const Home = ({navigation}) => {
 
-    const tramites = require('../../json/tramites.json')
+    const tramites = require('../../assets/tramites.json')
 
     return(
         <View>
