@@ -5,7 +5,7 @@ import BackIcon from './BackIcon';
 
 
 
-export default function Navbar({title}) {
+export default function NavbarPro({title}) {
 
   // const navigator = useNavigation();
   // console.log('from navbar:', navigator)
