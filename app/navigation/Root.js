@@ -4,13 +4,12 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { colors } from '../styles/colors';
 import Home from '../components/home/HomeScreen';
 import Procedure from '../components/procedure/ProcedureScreen';
-import TramiteCarrera from '../components/tramite/TramiteCarrera';
-import TramiteCertificado from '../components/tramite/TramiteCertificado';
+import Tramite from '../components/tramite/TramiteScreen';
 
 const RootStack = createStackNavigator();
 
 export default function Root() {
-  const datos = require('../assets/tramites.json')
+  
   return (
     <NavigationContainer>
       <RootStack.Navigator
@@ -33,7 +32,6 @@ export default function Root() {
             title: 'HOME',
             
           }}
-          naviga
         />
 
         <RootStack.Screen
@@ -43,29 +41,12 @@ export default function Root() {
             title: 'Inscripcion a una carrera',
             
           }}
-          naviga
         />
 
         <RootStack.Screen
-          name={ '@CambioCarrera' } 
-          component={ TramiteCarrera } 
-          options={{
-            title: 'Cambio de Carrera',
-            
-          }}
-          naviga
+          name="tramite" 
+          component={ Tramite }
         />
-
-        <RootStack.Screen
-          name={ '@CertAcad' } 
-          component={ TramiteCertificado } 
-          options={{
-            title: 'Certificado Académico',
-            
-          }}
-          naviga
-        />
-      
       </RootStack.Navigator>
     </NavigationContainer>
   )
