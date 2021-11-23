@@ -5,6 +5,7 @@ import { colors } from '../styles/colors';
 import Home from '../components/home/HomeScreen';
 import Procedure from '../components/procedure/ProcedureScreen';
 import Tramite from '../components/tramite/TramiteScreen';
+import { StatusBar } from 'react-native';
 
 const RootStack = createStackNavigator();
 
@@ -12,11 +13,14 @@ export default function Root() {
   
   return (
     <NavigationContainer>
+      <StatusBar
+        backgroundColor={ colors.blue }
+        barStyle="light-content"
+      />
       <RootStack.Navigator
         screenOptions={{
           headerStyle: {
             backgroundColor: colors.blue,
-            
           },
           headerTintColor: '#fff',
           headerTitleStyle: {
@@ -30,7 +34,6 @@ export default function Root() {
           component={ Home } 
           options={{
             title: 'HOME',
-            
           }}
         />
 
@@ -39,7 +42,6 @@ export default function Root() {
           component={ Procedure } 
           options={{
             title: 'Inscripcion a una carrera',
-            
           }}
         />
 
