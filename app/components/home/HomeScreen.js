@@ -20,7 +20,9 @@ const Home = ({navigation}) => {
                     <TouchableOpacity
                         key={ tramite.id} 
                         style={ styles.buttonStyle }
-                        onPress={() => navigation.navigate(tramite.nombre) }
+                        onPress={() => navigation.navigate('tramite',{
+                            tramite
+                        }) }
                     >
                         <Text style={styles.texteStyle}>
                             {tramite.titulo}
