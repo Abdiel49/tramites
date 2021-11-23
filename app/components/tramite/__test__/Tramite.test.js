@@ -3,7 +3,7 @@ import Tramite from "../Tramite";
 import { render } from '@testing-library/react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const tramites = require('../../../json/tramites.json');
+const tramites = require('../../../assets/tramites.json');
 
 beforeEach(async () => {
     await AsyncStorage.clear();
