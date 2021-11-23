@@ -1,9 +1,8 @@
 import React from 'react';
 import { render } from '@testing-library/react-native';
-import Home from '../Home'
+import Home from '../HomeScreen';
 
-
-const info = require('../../../json/tramites.json');
+const info = require('../../../assets/tramites.json');
 
 it('Se renderiza correctamente', () => {
     render(<Home />);
