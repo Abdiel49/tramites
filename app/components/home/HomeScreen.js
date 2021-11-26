@@ -1,10 +1,23 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 const Home = ({navigation}) => {
+    const [tramites, setTramites] = useState([]);
 
-    const tramites = require('../../assets/tramites.json')
-
+    useEffect(() => {
+        let isApiSubscribed = true;
+        axios.get('http://localhost:3000/api/tramites/umss')
+        .then((res) => {
+            if (isApiSubscribed) {
+                setTramites(res.data);
+            }
+        });
+        return () => {
+            isApiSubscribed = false;
+        }
+    }, [])
+    
     return(
         <View>
             <TouchableOpacity
