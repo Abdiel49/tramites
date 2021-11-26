@@ -2,12 +2,22 @@ import React from 'react';
 import { render, waitFor } from '@testing-library/react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Tramite from "../TramiteScreen";
+import axios from 'axios';
 
-const tramites = require('../../../assets/tramites.json');
+let tramites;
 
 beforeEach(async () => {
     await AsyncStorage.clear();
 });
+
+
+beforeAll(async () => {
+    await axios.get('http://localhost:3000/api/tramites/umss')
+    .then((res) => {
+        tramites = res.data;
+    });
+});
+
 
 describe('Requisitos de los Tramites', () => {
 
@@ -21,7 +31,6 @@ describe('Requisitos de los Tramites', () => {
                 tramite: tramites[0],
             }
         };
-        let componnet;
         const { getAllByTestId } = render(<Tramite route={route} navigation={ navigation }/>);
         await waitFor(()=>{
             expect(getAllByTestId('req-test').length).toBe(6); 
