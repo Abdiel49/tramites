@@ -7,16 +7,18 @@ const Home = ({navigation}) => {
 
     useEffect(() => {
         let isApiSubscribed = true;
-        axios.get('http://localhost:3000/api/tramites/umss')
+        axios.get('http://192.168.0.9:3000/api/tramites/umss')
         .then((res) => {
             if (isApiSubscribed) {
                 setTramites(res.data);
             }
-        });
+        }).catch( err => {
+            console.error( err )
+        })
         return () => {
             isApiSubscribed = false;
         }
-    }, [])
+    }, [tramites])
     
     return(
         <View>

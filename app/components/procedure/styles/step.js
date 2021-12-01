@@ -71,5 +71,8 @@ export const styles = StyleSheet.create({
   },
   scrollViewCont: {
     padding: 15,
+  },
+  buttonActionsColumn:{
+    flexDirection:'column'
   }
 })

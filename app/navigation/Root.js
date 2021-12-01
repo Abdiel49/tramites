@@ -5,6 +5,7 @@ import { colors } from '../styles/colors';
 import Home from '../components/home/HomeScreen';
 import Procedure from '../components/procedure/ProcedureScreen';
 import Tramite from '../components/tramite/TramiteScreen';
+import MapScreen from '../components/maps/MapScreen'
 import { StatusBar } from 'react-native';
 
 const RootStack = createStackNavigator();
@@ -48,6 +49,11 @@ export default function Root() {
         <RootStack.Screen
           name="tramite" 
           component={ Tramite }
+        />
+
+        <RootStack.Screen
+          name="maps" 
+          component={ MapScreen }
         />
       </RootStack.Navigator>
     </NavigationContainer>

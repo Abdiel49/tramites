@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, Pressable } from "react-native";
 import Checkbox from "../checkbox/Checkbox";
+import GoMapsButton from "../maps/GoMapsButton";
 import SeeMore from "../seemore/SeeMore";
 import { styles } from "./styles/step";
 
@@ -43,8 +44,17 @@ export default function Step({ stepNumber, value, onCheckStep }) {
             onPress={()=> setStepData( !stepData )}
           />
         </View>
+        
+        <View style={styles.buttonActionsColumn}>
+          <Checkbox 
+            value={ value } 
+            onCheck={() => onCheckStep() } 
+          />
+          <GoMapsButton 
+            data={{latitude:-17.3939575620106, longitude:-66.14757225293525}}
+          />
+        </View>
 
-        <Checkbox value={ value } onCheck={() => onCheckStep() } />
       </View>
       {stepData && (
         <View>
