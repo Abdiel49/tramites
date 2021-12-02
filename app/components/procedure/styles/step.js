@@ -73,6 +73,7 @@ export const styles = StyleSheet.create({
     padding: 15,
   },
   buttonActionsColumn:{
-    flexDirection:'column'
+    flexDirection:'column',
+    justifyContent: 'space-evenly',
   }
 })

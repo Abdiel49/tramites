@@ -24,6 +24,16 @@ export default function Step({ stepNumber, value, onCheckStep }) {
       [key]: !aux,
     });
   };
+  const data={
+    haveLocation: true,// false
+    location: {
+      latitude:-17.3939575620106, 
+      longitude:-66.14757225293525
+    },
+    stepTitle: "Edificio Multiacadémico",
+    locationTitle: "Edificio Multiacadémico",
+    description: 'Atiente de L-V  de 8 - 16  hrs. Use medidas de bioseguridad'
+  }
 
   return (
     <View style={styles.stepCont}>
@@ -50,9 +60,12 @@ export default function Step({ stepNumber, value, onCheckStep }) {
             value={ value } 
             onCheck={() => onCheckStep() } 
           />
-          <GoMapsButton 
-            data={{latitude:-17.3939575620106, longitude:-66.14757225293525}}
-          />
+          {
+            data.haveLocation &&
+            <GoMapsButton 
+              data={ data }
+            />
+          }
         </View>
 
       </View>

@@ -1,15 +1,38 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, Pressable, Alert } from 'react-native';
+import { 
+    View, 
+    Text, 
+    StyleSheet, 
+    Pressable, 
+    Platform, 
+    Linking 
+} from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
-import { colors } from '../../styles/colors';
+import { styles } from './mapScreen.style'
 
-export default function MapScreen({ route }) {
+export default function MapScreen({ route, navigation }) {
 
   const [data, setData] = useState(route.params.data || {});
+  const { description, location:loc, locationTitle, stepTitle } = data;
   const [location, setLocation] = useState({
-    latitude: data.latitude,
-    longitude: data.longitude,
+    latitude: loc.latitude,
+    longitude: loc.longitude,
   })
+
+  useEffect(() => {
+    navigation.setOptions({title: stepTitle});
+  }, [])
+
+  const openMapApplication = () => {
+    const scheme = Platform.select({ ios: 'maps:0,0?q=', android: 'geo:0,0?q=' });
+    const latLng = `${location.latitude},${location.longitude}`;
+    const label = locationTitle;
+    const url = Platform.select({
+      ios: `${scheme}${label}@${latLng}`,
+      android: `${scheme}${latLng}(${label})`
+    });
+    Linking.openURL(url);
+  }
 
   return (
     <View style={styles.mapScreen}>
@@ -24,48 +47,19 @@ export default function MapScreen({ route }) {
       >
         <Marker
           coordinate={{ latitude : location.latitude, longitude : location.longitude }}
-          title="Edificio Decanato UMSS"
-          description={`Atiente de L-V  de 8 - 16  hrs. Use medidas de bioseguridad`}
+          title={ locationTitle }
+          description={ description }
         />
       </MapView>
 
       <View style={styles.mapButtonContent}>
         <Pressable
           style={styles.button}
-          onPress={()=> Alert.alert("holas")}
+          onPress={ openMapApplication }
         >
-          <Text style={ styles.buttonText }>Abrir en Google Maps</Text>
+          <Text style={ styles.buttonText }>Abrir con otra aplicacion</Text>   
         </Pressable>
       </View>
     </View>
   )
 }
-
-const styles = StyleSheet.create({
-  mapScreen:{
-    height:'100%',
-  },
-  mapView: {
-    flex:1,
-    width:'100%',
-    height:'100%',
-  },
-  mapButtonContent:{
-    flexDirection:'row',
-    backgroundColor: colors.blue,  
-    width:'100%',
-    height:45,
-    justifyContent:'center',
-    alignItems:'center',
-  },
-  button:{
-    backgroundColor: colors.blue,
-    padding:10,
-    marginVertical:10,
-  },
-  buttonText:{
-    color: colors.light,
-    fontWeight: 'bold',
-    fontSize:18,
-  }
-})

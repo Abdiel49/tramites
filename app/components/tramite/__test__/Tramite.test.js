@@ -6,8 +6,21 @@ import axios from 'axios';
 
 let tramites;
 
+let mockedNavigate = jest.fn();
+
+jest.mock('@react-navigation/native', () => {
+  const actualNav = jest.requireActual('@react-navigation/native');
+  return {
+    ...actualNav,
+    useNavigation: () => ({
+      navigate: mockedNavigate,
+    }),
+  };
+});
+
 beforeEach(async () => {
     await AsyncStorage.clear();
+    mockedNavigate = jest.fn();
 });
 
 
@@ -18,11 +31,11 @@ beforeAll(async () => {
     });
 });
 
-
 describe('Requisitos de los Tramites', () => {
 
     const navigation = {
         setOptions: jest.fn(),
+        navigate: mockedNavigate()
     }
 
     it('Requisitos del Tramite "Cambio de Carrera" son 6', async () => {

@@ -11,10 +11,9 @@ beforeAll(async () => {
     });
 });
 
-it('Se renderiza correctamente', async () => {
-    await waitFor(()=>{
-        render(<Home />);        
-    })
+
+it('Se renderiza correctamente', () => {
+    render(<Home />); 
 });
 
 it('Un boton para cada tramite (3tramites 3botones)',async () => {  
