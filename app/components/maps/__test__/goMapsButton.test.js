@@ -36,7 +36,7 @@ describe("Pruebas en el componente <GoMapsButton/>", ()=>{
 		expect( getAllByTestId('mapIconComponent').length).toBe(1);
 	});
 
-	it("Puerba del evento on press", async()=>{
+	it("test on event onPress with press", async()=>{
 		const { getByTestId } = render(<GoMapsButton/>);
 		await fireEvent.press(getByTestId('buttonToMaps'));
 		
@@ -46,7 +46,7 @@ describe("Pruebas en el componente <GoMapsButton/>", ()=>{
 		expect( mockedNavigate ).toHaveBeenCalledTimes(1);
 	})
 
-	it("prueba de que se envia la data con en navigate", async()=>{
+	it("test of send data and path navigation name", async()=>{
 		const { getByTestId } = render(<GoMapsButton data={ data } />);
 		await fireEvent.press(getByTestId('buttonToMaps'));
 		
