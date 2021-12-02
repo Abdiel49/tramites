@@ -14,8 +14,9 @@ export default function GoMapsButton({ data }) {
 	return (
 		<Pressable
 			onPress={ handlePress }
+			testID="buttonToMaps"
 		>
-			<MapIcon/>
+			<MapIcon testID="mapIconComponent"/>
 		</Pressable>
 	)
 }

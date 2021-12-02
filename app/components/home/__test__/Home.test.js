@@ -12,39 +12,43 @@ beforeAll(async () => {
 });
 
 
-it('Se renderiza correctamente', () => {
-    render(<Home />); 
-});
+describe("Pruebas en HomeScreen",()=>{
 
-it('Un boton para cada tramite (3tramites 3botones)',async () => {  
+  it('Se renderiza correctamente', () => {
+      render(<Home />); 
+  });
+
+  it('Un boton para cada tramite (3tramites 3botones)',async () => {  
     const elemento = render(<Home/>);
 
     await waitFor(()=>{
-        let elem = elemento.toJSON();
-        expect(elem.children.length).toBe(tramites.length+1); //+1 Tramite de Inscripcion   
+      let elem = elemento.toJSON();
+      expect(elem.children.length).toBe(tramites.length+1); //+1 Tramite de Inscripcion   
     })
-});
+  });
 
-it('Existencia de un boton con el titulo del tramite "Inscripcion a una Carrera"', async () => {
+  it('Existencia de un boton con el titulo del tramite "Inscripcion a una Carrera"', async () => {
     const { getAllByText } = render(<Home/>);
 
     await waitFor(()=>{
-        expect(getAllByText('Inscripción a una Carrera').length).toBe(1);       
+      expect(getAllByText('Inscripción a una Carrera').length).toBe(1);       
     })
-});
+  });
 
-it('Existencia de un boton con el titulo del tramite "Certificado de Estudios"', async () => {
+  it('Existencia de un boton con el titulo del tramite "Certificado de Estudios"', async () => {
     const { getAllByText } = render(<Home/>);
 
     await waitFor(()=>{
-        expect(getAllByText(tramites[0].titulo).length).toBe(1);   
+      expect(getAllByText(tramites[0].titulo).length).toBe(1);   
     })
- });
+   });
 
-it('Existencia de un boton con el titulo del tramite "Cambio de Carrera"', async () => {
-   const { getAllByText } = render(<Home/>);
+  it('Existencia de un boton con el titulo del tramite "Cambio de Carrera"', async () => {
+    const { getAllByText } = render(<Home/>);
 
-   await waitFor(()=>{
-     expect(getAllByText(tramites[1].titulo).length).toBe(1);        
-   })
+    await waitFor(()=>{
+      expect(getAllByText(tramites[1].titulo).length).toBe(1);        
+    })
+  });
+
 });
