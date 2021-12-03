@@ -26,7 +26,8 @@ export default function Step4({ stepNumber, value, onCheckStep }) {
         </View>
         <Checkbox value={ value } onCheck={ onCheckStep } />
       </View>
-      {stepData && (
+      {
+        stepData && (
         <View>
           <View>
             <Text style={styles.textBolt}>Descripcion:</Text>

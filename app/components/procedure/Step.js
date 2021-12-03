@@ -6,7 +6,6 @@ import SeeMore from "../seemore/SeeMore";
 import { styles } from "./styles/step";
 
 export default function Step({ stepNumber, value, onCheckStep }) {
-  
   const [stepData, setStepData] = useState(false);
 
   const [subTitle, setSubTitle] = useState({
@@ -24,24 +23,22 @@ export default function Step({ stepNumber, value, onCheckStep }) {
       [key]: !aux,
     });
   };
-  const data={
-    haveLocation: true,// false
+  const data = {
+    haveLocation: true, // false
     location: {
-      latitude:-17.3939575620106, 
-      longitude:-66.14757225293525
+      latitude: -17.3939575620106,
+      longitude: -66.14757225293525,
     },
     stepTitle: "Edificio Multiacadémico",
     locationTitle: "Edificio Multiacadémico",
-    description: 'Atiente de L-V  de 8 - 16  hrs. Use medidas de bioseguridad'
-  }
+    description: "Atiente de L-V  de 8 - 16  hrs. Use medidas de bioseguridad",
+  };
 
   return (
     <View style={styles.stepCont}>
       <View style={styles.stepNavbar}>
         <View style={styles.stepNavbar_info}>
-          <Pressable
-            onPress={()=> setStepData( !stepData )}
-          >
+          <Pressable onPress={() => setStepData(!stepData)}>
             <Text style={styles.stepNumber}>{stepNumber}</Text>
             <Text style={styles.stepTitle}>
               Presentar los siguientes documentos a partir del 27 de julio de
@@ -49,27 +46,19 @@ export default function Step({ stepNumber, value, onCheckStep }) {
               baja) en el siguiente horario 08:30 a 12:00 o 14:30 a 18:00:
             </Text>
           </Pressable>
-          <SeeMore 
-            value={ stepData } 
-            onPress={()=> setStepData( !stepData )}
-          />
-        </View>
-        
-        <View style={styles.buttonActionsColumn}>
-          <Checkbox 
-            value={ value } 
-            onCheck={() => onCheckStep() } 
-          />
-          {
-            data.haveLocation &&
-            <GoMapsButton 
-              data={ data }
-            />
-          }
+          <SeeMore value={stepData} onPress={() => setStepData(!stepData)} />
         </View>
 
+        <View style={styles.buttonActionsColumn}>
+          <Checkbox 
+            value={value} 
+            onCheck={() => onCheckStep()} 
+          />
+          {data.haveLocation && <GoMapsButton data={data} />}
+        </View>
       </View>
-      {stepData && (
+      {
+        stepData && (
         <View>
           <Text style={styles.textBolt}>Descripcion:</Text>
           <Text>
@@ -80,19 +69,18 @@ export default function Step({ stepNumber, value, onCheckStep }) {
           {/* subtitles */}
           <View style={styles.containerSimple}>
             <View style={styles.rowTitle}>
-              <Pressable
-                onPress={() => handleSubtitle("posBol")}
-              >
+              <Pressable onPress={() => handleSubtitle("posBol")}>
                 <Text style={styles.textBolt}>
                   POSTULANTE NACIONAL (BOLIVIANO)
                 </Text>
               </Pressable>
-              <SeeMore 
-                value={posBol} 
+              <SeeMore
+                value={posBol}
                 onPress={() => handleSubtitle("posBol")}
               />
             </View>
-            {posBol && (
+            {
+              posBol && (
               <View style={styles.containerList}>
                 <Text style={styles.testListItem}>
                   • Diploma de bachiller (Fotocopia legalizada). La legalización
@@ -134,18 +122,17 @@ export default function Step({ stepNumber, value, onCheckStep }) {
 
           <View style={styles.containerSimple}>
             <View style={styles.rowTitle}>
-              <Pressable 
-                onPress={() => handleSubtitle("posExtran")}
-              >
+              <Pressable onPress={() => handleSubtitle("posExtran")}>
                 <Text style={styles.textBolt}>POSTULANTE EXTRANJERO</Text>
               </Pressable>
-              <SeeMore 
+              <SeeMore
                 value={posExtran}
-                onPress={() => handleSubtitle("posExtran")} 
+                onPress={() => handleSubtitle("posExtran")}
               />
             </View>
             {/* text subtitle info */}
-            {posExtran && (
+            {
+              posExtran && (
               <View>
                 <Text>
                   Todos los siguientes documentos deben ser legalizados por el
@@ -180,21 +167,20 @@ export default function Step({ stepNumber, value, onCheckStep }) {
           <View style={styles.containerSimple}>
             <View style={styles.rowTitle}>
               <View styles={styles.rowTitleText}>
-                <Pressable 
-                  onPress={() => handleSubtitle("posExtranBol")}
-                >
+                <Pressable onPress={() => handleSubtitle("posExtranBol")}>
                   <Text style={styles.textBolt}>
                     POSTULANTE EXTRANJERO DE PADRES BOLIVIANOS
                   </Text>
                 </Pressable>
               </View>
-              <SeeMore 
-                value={posExtranBol} 
+              <SeeMore
+                value={posExtranBol}
                 onPress={() => handleSubtitle("posExtranBol")}
               />
             </View>
             {/* text subtitle info */}
-            {posExtranBol && (
+            {
+              posExtranBol && (
               <View>
                 <Text>
                   Todos los estudiantes que no hayan realizado el trámite de

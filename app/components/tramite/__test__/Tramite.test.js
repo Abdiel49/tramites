@@ -1,15 +1,15 @@
-import React from 'react';
-import { render, waitFor } from '@testing-library/react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import React from "react";
+import { render, waitFor } from "@testing-library/react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import Tramite from "../TramiteScreen";
-import axios from 'axios';
+import axios from "axios";
 
 let tramites;
 
 let mockedNavigate = jest.fn();
 
-jest.mock('@react-navigation/native', () => {
-  const actualNav = jest.requireActual('@react-navigation/native');
+jest.mock("@react-navigation/native", () => {
+  const actualNav = jest.requireActual("@react-navigation/native");
   return {
     ...actualNav,
     useNavigation: () => ({
@@ -19,49 +19,47 @@ jest.mock('@react-navigation/native', () => {
 });
 
 beforeEach(async () => {
-    await AsyncStorage.clear();
-    mockedNavigate = jest.fn();
+  await AsyncStorage.clear();
+  mockedNavigate = jest.fn();
 });
-
 
 beforeAll(async () => {
-    await axios.get('http://localhost:3000/api/tramites/umss')
-    .then((res) => {
-        tramites = res.data;
-    });
+  await axios.get("http://localhost:3000/api/tramites/umss").then((res) => {
+    tramites = res.data;
+  });
 });
 
-describe('Requisitos de los Tramites', () => {
+describe("Requisitos de los Tramites", () => {
+  const navigation = {
+    setOptions: jest.fn(),
+    navigate: mockedNavigate(),
+  };
 
-    const navigation = {
-        setOptions: jest.fn(),
-        navigate: mockedNavigate()
-    }
-
-    it('Requisitos del Tramite "Cambio de Carrera" son 6', async () => {
-        const route = {
-            params:{
-                tramite: tramites[0],
-            }
-        };
-        const { getAllByTestId } = render(<Tramite route={route} navigation={ navigation }/>);
-        await waitFor(()=>{
-            expect(getAllByTestId('req-test').length).toBe(6); 
-        })
-
+  it('Requisitos del Tramite "Cambio de Carrera" son 6', async () => {
+    const route = {
+      params: {
+        tramite: tramites[0],
+      },
+    };
+    const { getAllByTestId } = render(
+      <Tramite route={route} navigation={navigation} />
+    );
+    await waitFor(() => {
+      expect(getAllByTestId("req-test").length).toBe(6);
     });
+  });
 
-    it('Requisitos del Tramite "Certificado Académico" son 9', async() => {
-        const route = {
-            params:{
-                tramite: tramites[1],
-            }
-        };
-        const { getAllByTestId } = render(<Tramite route={route} navigation={ navigation }/>);
-        await waitFor(()=>{
-            expect(getAllByTestId('req-test').length).toBe(9); 
-        })
+  it('Requisitos del Tramite "Certificado Académico" son 9', async () => {
+    const route = {
+      params: {
+        tramite: tramites[1],
+      },
+    };
+    const { getAllByTestId } = render(
+      <Tramite route={route} navigation={navigation} />
+    );
+    await waitFor(() => {
+      expect(getAllByTestId("req-test").length).toBe(9);
     });
+  });
 });
-
-
