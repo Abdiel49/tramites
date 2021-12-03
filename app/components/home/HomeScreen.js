@@ -21,11 +21,13 @@ const Home = ({navigation}) => {
             if (isApiSubscribed) {
                 setTramites(res.data);
             }
-        });
+        }).catch( err => {
+            console.error( err )
+        })
         return () => {
             isApiSubscribed = false;
         };
-    }, [tramites, apiBase])
+    }, [ apiBase])
     
     return(
         <View>

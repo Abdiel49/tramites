@@ -15,8 +15,12 @@ const tramiteStyle = StyleSheet.create({
         borderRightColor: 'rgba(181,181,181,0.5)',
         borderBottomColor: 'rgba(181,181,181,0.5)',
         borderRadius: 20,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    stepDesc: {
         fontSize: 15,
-        flexDirection: 'row'
     },
     stepCont2: {
         position: 'relative',

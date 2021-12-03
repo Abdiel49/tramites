@@ -4,6 +4,7 @@ import { SafeAreaView, ScrollView, Text, View } from 'react-native';
 import { gStyles } from '../../styles/globalStyles';
 import Progress from '../progressBar/Progress';
 import Requisito from './Requisito';
+import GoMapsButton from '../maps/GoMapsButton';
 import tramiteStyle from './styles/tramiteItem';
 
 const Tramite = ({route, navigation}) => {
@@ -27,6 +28,7 @@ const Tramite = ({route, navigation}) => {
     }
     
     const tramiteChecks = info.nombre;
+    const { mapData } = info;
 
     const getData = async () => {
         try {
@@ -71,10 +73,16 @@ const Tramite = ({route, navigation}) => {
                     data={ tramitesStorage }
                 /></View>
                 
-                <ScrollView style={ tramiteStyle.scrollViewCont }>        
-                    <Text style={ tramiteStyle.stepCont }>
-                        {info.descripcion}
-                    </Text>
+                <ScrollView style={ tramiteStyle.scrollViewCont }>   
+                    <View style={ tramiteStyle.stepCont }>
+                        <Text style={ tramiteStyle.stepDesc }>
+                            {info.descripcion}
+                        </Text>
+                        {
+                            !!mapData?.haveLocation && 
+                            <GoMapsButton data={ mapData }/>
+                        }
+                    </View>     
                     <Text style={{fontWeight: 'bold'}}>Requisitos:</Text>
                         {
                         info.requisitos.map(req => (
@@ -83,6 +91,7 @@ const Tramite = ({route, navigation}) => {
                                 style={ tramiteStyle.stepCont2 }
                                 req={ req.requisito }
                                 check={ tramitesStorage[req.id] }
+                                mapData={ req.mapData || {}  }
                                 onChecked={ () => setTramitesStorage({...tramitesStorage, [req.id]: !tramitesStorage[req.id]}) }
                             />
                         ))
