@@ -9,7 +9,6 @@ const Home = ({navigation}) => {
     const [apiBase, setApiBase] = useState( networkEnv );
     
     useEffect(()=>{
-        // if(Platform.OS == 'android' || Platform.OS == 'ios'){
         if(Platform.OS !== 'android' && Platform.OS !== 'ios' ){
             setApiBase( 'localhost:3000' );
         }
