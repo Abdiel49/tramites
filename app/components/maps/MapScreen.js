@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { 
     View, 
-    Text, 
-    StyleSheet, 
+    Text,  
     Pressable, 
     Platform, 
     Linking 
@@ -47,7 +46,10 @@ export default function MapScreen({ route, navigation }) {
         testID="map-view"
       >
         <Marker
-          coordinate={{ latitude : location.latitude, longitude : location.longitude }}
+          coordinate={{ 
+            latitude : location.latitude, 
+            longitude : location.longitude 
+          }}
           title={ locationTitle }
           description={ description }
           testID="mark-maps-view"

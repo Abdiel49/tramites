@@ -15,12 +15,12 @@ jest.mock('@react-navigation/native', () => {
 });
 
 describe("Pruebas en el componente <GoMapsButton/>", ()=>{
-
-	beforeEach(()=>{
-		mockedNavigate.mockClear()
-	});
-
-	const data={
+  
+  beforeEach(()=>{
+    mockedNavigate.mockClear()
+  });
+  
+  const data={
     haveLocation: true,// false
     location: {
       latitude:-17.3939575620106, 
@@ -30,30 +30,30 @@ describe("Pruebas en el componente <GoMapsButton/>", ()=>{
     locationTitle: "Edificio Multiacadémico",
     description: 'Atiente de L-V  de 8 - 16  hrs. Use medidas de bioseguridad'
   }
-
-	it("renders corrently component", () => {
-		const { getAllByTestId } = render(<GoMapsButton/>);
-		expect( getAllByTestId('mapIconComponent').length).toBe(1);
-	});
-
-	it("test on event onPress with press", async()=>{
-		const { getByTestId } = render(<GoMapsButton/>);
-		await fireEvent.press(getByTestId('buttonToMaps'));
-		
-		await waitFor(()=>{
-			expect(getByTestId('buttonToMaps')).toBeTruthy();
-		}) 
-		expect( mockedNavigate ).toHaveBeenCalledTimes(1);
-	})
-
-	it("test of send data and path navigation name", async()=>{
-		const { getByTestId } = render(<GoMapsButton data={ data } />);
-		await fireEvent.press(getByTestId('buttonToMaps'));
-		
-		await waitFor(()=>{
-			expect(getByTestId('buttonToMaps')).toBeTruthy();
-		}) 
-		expect( mockedNavigate ).toHaveBeenCalledWith("maps",{data: data} );
-	})
-
+  
+  it("renders corrently component", () => {
+    const { getAllByTestId } = render(<GoMapsButton/>);
+    expect( getAllByTestId('mapIconComponent').length).toBe(1);
+  });
+  
+  it("test on event onPress with press", async()=>{
+    const { getByTestId } = render(<GoMapsButton/>);
+    await fireEvent.press(getByTestId('buttonToMaps'));
+    
+    await waitFor(()=>{
+      expect(getByTestId('buttonToMaps')).toBeTruthy();
+    }) 
+    expect( mockedNavigate ).toHaveBeenCalledTimes(1);
+  })
+  
+  it("test of send data and path navigation name", async()=>{
+    const { getByTestId } = render(<GoMapsButton data={ data } />);
+    await fireEvent.press(getByTestId('buttonToMaps'));
+    
+    await waitFor(()=>{
+      expect(getByTestId('buttonToMaps')).toBeTruthy();
+    }) 
+    expect( mockedNavigate ).toHaveBeenCalledWith("maps",{data: data} );
+  })
+  
 })
