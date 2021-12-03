@@ -44,11 +44,13 @@ export default function MapScreen({ route, navigation }) {
           latitudeDelta: 0.002965,
           longitudeDelta: 0.002965,
         }}
+        testID="map-view"
       >
         <Marker
           coordinate={{ latitude : location.latitude, longitude : location.longitude }}
           title={ locationTitle }
           description={ description }
+          testID="mark-maps-view"
         />
       </MapView>
 
@@ -56,6 +58,7 @@ export default function MapScreen({ route, navigation }) {
         <Pressable
           style={styles.button}
           onPress={ openMapApplication }
+          testID="openMapsApp"
         >
           <Text style={ styles.buttonText }>Abrir con otra aplicacion</Text>   
         </Pressable>
