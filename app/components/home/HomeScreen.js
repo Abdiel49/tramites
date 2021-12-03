@@ -27,7 +27,7 @@ const Home = ({navigation}) => {
         return () => {
             isApiSubscribed = false;
         };
-    }, [tramites, apiBase])
+    }, [ apiBase])
     
     return(
         <View>
