@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { render, waitFor } from "@testing-library/react-native";
 import Home from "../HomeScreen";
 import axios from "axios";
