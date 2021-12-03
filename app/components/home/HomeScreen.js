@@ -1,13 +1,22 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View, Platform } from 'react-native';
+import axios from 'axios';
+import { networkEnv } from '../../../network'
 
 const Home = ({navigation}) => {
+
     const [tramites, setTramites] = useState([]);
+    const [apiBase, setApiBase] = useState( networkEnv );
+    
+    useEffect(()=>{
+        if(Platform.OS !== 'android' && Platform.OS !== 'ios' ){
+            setApiBase( 'localhost:3000' );
+        }
+    },[]);
 
     useEffect(() => {
         let isApiSubscribed = true;
-        axios.get('http://localhost:3000/api/tramites/umss')
+        axios.get(`http://${apiBase}/api/tramites/umss`)
         .then((res) => {
             if (isApiSubscribed) {
                 setTramites(res.data);
@@ -17,8 +26,8 @@ const Home = ({navigation}) => {
         })
         return () => {
             isApiSubscribed = false;
-        }
-    }, [tramites])
+        };
+    }, [tramites, apiBase])
     
     return(
         <View>
