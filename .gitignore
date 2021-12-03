@@ -1,6 +1,10 @@
+# node js
 node_modules/
-.expo/
 npm-debug.*
+package-lock.json
+
+# Expo and project
+.expo/
 *.jks
 *.p8
 *.p12
@@ -11,3 +15,7 @@ web-build/
 
 # macOS
 .DS_Store
+
+# network env
+
+network.js

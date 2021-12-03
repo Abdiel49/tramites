@@ -2,7 +2,7 @@
   "expo": {
     "name": "tramites",
     "slug": "tramites",
-    "version": "1.0.0",
+    "version": "1.2.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -17,13 +17,22 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.agile.tramites",
+      "buildNumber": "1.2.0"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyBifpbali7eTuiZYn6x7hFQmBtw0THevlQ"
+        }
+      },
+      "package": "com.agile.tramites",
+      "versionCode": 2
     },
     "web": {
       "favicon": "./assets/favicon.png"
