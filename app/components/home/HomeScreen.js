@@ -3,9 +3,6 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  View,
-  Platform,
-  SafeAreaView,
   ScrollView
 } from "react-native";
 import axios from "axios";
@@ -16,18 +13,9 @@ const Home = ({ navigation }) => {
   const [apiBase, setApiBase] = useState(networkEnv);
 
   useEffect(() => {
-    if (Platform.OS !== "android" && Platform.OS !== "ios") {
-      setApiBase("localhost:3000");
-    }
-  }, []);
-
-  useEffect(() => {
     let isApiSubscribed = true;
-    if (Platform.OS !== "android" && Platform.OS !== "ios") {
-      setApiBase("localhost:3000");
-    }
     axios
-      .get(`http://${apiBase}/api/tramites/umss`)
+      .get(`${apiBase}/api/tramites/umss`)
       .then((res) => {
         if (isApiSubscribed) {
           setTramites(res.data);

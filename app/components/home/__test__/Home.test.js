@@ -2,10 +2,12 @@ import React from "react";
 import { render, waitFor } from "@testing-library/react-native";
 import Home from "../HomeScreen";
 import axios from "axios";
+import { networkEnv } from "../../../../network";
 
 let tramites;
+
 beforeAll(async () => {
-  await axios.get("http://localhost:3000/api/tramites/umss").then((res) => {
+  await axios.get(`${networkEnv}/api/tramites/umss`).then((res) => {
     tramites = res.data;
   });
 });
