@@ -1,7 +1,7 @@
-import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
 
-export default function StepFooter() {
+export default function StepFooter () {
   return (
     <View style={ styles.footerContainer }>
       <Text style={ styles.textFooter }>Importante: Ud. estará inscrito correctamente si cumple TODOS los pasos en forma secuencial. Favor tome nota</Text>
@@ -10,20 +10,20 @@ export default function StepFooter() {
         <Text>Cochabamba, 27 de Julio de 2017</Text>
       </View>
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
   footerContainer: {
-    marginHorizontal:5,
-    padding: 5,
+    marginHorizontal: 5,
+    padding: 5
   },
   textFooter: {
-    fontStyle:'italic',
-    marginVertical:10,
+    fontStyle: 'italic',
+    marginVertical: 10
   },
   textFooterCenter: {
-    alignItems:'center',
-    justifyContent:'center',
+    alignItems: 'center',
+    justifyContent: 'center'
   }
-})
+});

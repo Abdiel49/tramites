@@ -1,11 +1,11 @@
-import { StyleSheet } from "react-native";
-import { colors } from "./colors";
+import { StyleSheet } from 'react-native';
+import { colors } from './colors';
 
 export const gStyles = StyleSheet.create({
   safeAreaContainer: {
-    backgroundColor: colors.bgColor,
+    backgroundColor: colors.bgColor
   },
   scrollViewCont: {
-    padding: 15,
+    padding: 15
   }
-})
+});

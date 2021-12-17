@@ -1,7 +1,7 @@
-import * as React from "react"
-import Svg, { Path } from "react-native-svg"
+import * as React from 'react';
+import Svg, { Path } from 'react-native-svg';
 
-function UnCheck(props) {
+function UnCheck (props) {
   return (
     <Svg
       width={24}
@@ -15,7 +15,7 @@ function UnCheck(props) {
         fill="#0D0D0D"
       />
     </Svg>
-  )
+  );
 }
 
 export default UnCheck;

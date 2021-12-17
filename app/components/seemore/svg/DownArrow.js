@@ -1,7 +1,7 @@
-import * as React from "react";
-import Svg, { Path } from "react-native-svg";
+import * as React from 'react';
+import Svg, { Path } from 'react-native-svg';
 
-function DownArrow(props) {
+function DownArrow (props) {
   return (
     <Svg
       width={24}

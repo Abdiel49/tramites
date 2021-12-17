@@ -1,25 +1,25 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import React, { useEffect, useState } from "react";
-import { SafeAreaView, ScrollView, Text, View } from "react-native";
-import { gStyles } from "../../styles/globalStyles";
-import Progress from "../progressBar/Progress";
-import Requisito from "./Requisito";
-import GoMapsButton from "../maps/GoMapsButton";
-import tramiteStyle from "./styles/tramiteItem";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import React, { useEffect, useState } from 'react';
+import { SafeAreaView, ScrollView, Text, View } from 'react-native';
+import { gStyles } from '../../styles/globalStyles';
+import Progress from '../progressBar/Progress';
+import Requisito from './Requisito';
+import GoMapsButton from '../maps/GoMapsButton';
+import tramiteStyle from './styles/tramiteItem';
 
 const Tramite = ({ route, navigation }) => {
   const { tramite: info } = route.params;
 
   useEffect(() => {
     navigation.setOptions({
-      title: info.titulo,
+      title: info.titulo
     });
   }, []);
 
-  const [tramitesStorage, setTramitesStorage] = useState([]);
+  const [ tramitesStorage, setTramitesStorage ] = useState([]);
 
   const generarChecks = () => {
-    let listaChecks = [info.requisitos.length];
+    const listaChecks = [ info.requisitos.length ];
     for (let i = 0; i < info.requisitos.length; i++) {
       listaChecks[i] = false;
     }
@@ -52,8 +52,8 @@ const Tramite = ({ route, navigation }) => {
   };
 
   useEffect(() => {
-    async function loadData() {
-      let data = await getData();
+    async function loadData () {
+      const data = await getData();
       setTramitesStorage(data);
     }
     loadData();
@@ -61,7 +61,7 @@ const Tramite = ({ route, navigation }) => {
 
   useEffect(() => {
     storeData(tramitesStorage);
-  }, [tramitesStorage]);
+  }, [ tramitesStorage ]);
 
   return (
     <View>
@@ -77,7 +77,7 @@ const Tramite = ({ route, navigation }) => {
               !!mapData?.haveLocation && <GoMapsButton data={mapData} />
             }
           </View>
-          <Text style={{ fontWeight: "bold" }}>Requisitos:</Text>
+          <Text style={{ fontWeight: 'bold' }}>Requisitos:</Text>
           {
             info.requisitos.map((req) => (
               <Requisito
@@ -89,11 +89,11 @@ const Tramite = ({ route, navigation }) => {
                 onChecked={() =>
                   setTramitesStorage({
                     ...tramitesStorage,
-                    [req.id]: !tramitesStorage[req.id],
+                    [req.id]: !tramitesStorage[req.id]
                   })
                 }
               />
-          ))}
+            ))}
           <View style={{ padding: 50 }}></View>
         </ScrollView>
       </SafeAreaView>

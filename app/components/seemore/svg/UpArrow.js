@@ -1,7 +1,7 @@
-import * as React from "react"
-import Svg, { Path } from "react-native-svg"
+import * as React from 'react';
+import Svg, { Path } from 'react-native-svg';
 
-function UpArrow(props) {
+function UpArrow (props) {
   return (
     <Svg
       width={24}
@@ -18,7 +18,7 @@ function UpArrow(props) {
         strokeLinejoin="round"
       />
     </Svg>
-  )
+  );
 }
 
 export default UpArrow;

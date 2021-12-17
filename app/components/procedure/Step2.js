@@ -1,33 +1,32 @@
-import React, { useState } from 'react'
-import { View, Text, Pressable } from 'react-native'
+import React, { useState } from 'react';
+import { View, Text, Pressable } from 'react-native';
 import Checkbox from '../checkbox/Checkbox';
 import SeeMore from '../seemore/SeeMore';
 import { styles } from './styles/step';
 
-export default function Step2({ stepNumber, value, onCheckStep }) {
-
-  const [stepData, setStepData] = useState( false );
+export default function Step2 ({ stepNumber, value, onCheckStep }) {
+  const [ stepData, setStepData ] = useState(false);
 
   return (
     <View style={styles.stepCont }>
       <View style={styles.stepNavbar}>
         <View style={styles.stepNavbar_info}>
           <Pressable
-            onPress={ ()=> setStepData( !stepData )}
+            onPress={ () => setStepData(!stepData)}
           >
             <Text style={styles.stepNumber}>{stepNumber}</Text>
             <Text style={styles.stepTitle}>
               Llenado de sus Datos Biográﬁcos.
             </Text>
           </Pressable>
-          <SeeMore 
+          <SeeMore
             value={ stepData }
-            onPress={ ()=> setStepData( !stepData )}
+            onPress={ () => setStepData(!stepData)}
           />
         </View>
-        <Checkbox 
-          value={ value } 
-          onCheck={() => onCheckStep() } 
+        <Checkbox
+          value={ value }
+          onCheck={() => onCheckStep() }
         />
       </View>
       {
@@ -40,7 +39,7 @@ export default function Step2({ stepNumber, value, onCheckStep }) {
           </View>
         )
       }
-      
+
     </View>
-  )
+  );
 }

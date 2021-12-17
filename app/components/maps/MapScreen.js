@@ -1,26 +1,25 @@
 import React, { useEffect, useState } from 'react';
-import { 
-    View, 
-    Text,  
-    Pressable, 
-    Platform, 
-    Linking 
+import {
+  View,
+  Text,
+  Pressable,
+  Platform,
+  Linking
 } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
-import { styles } from './mapScreen.style'
+import { styles } from './mapScreen.style';
 
-export default function MapScreen({ route, navigation }) {
-
-  const [data, setData] = useState(route.params.data || {});
-  const { description, location:loc, locationTitle, stepTitle } = data;
-  const [location, setLocation] = useState({
+export default function MapScreen ({ route, navigation }) {
+  const [ data, setData ] = useState(route.params.data || {});
+  const { description, location: loc, locationTitle, stepTitle } = data;
+  const [ location, setLocation ] = useState({
     latitude: loc.latitude,
-    longitude: loc.longitude,
-  })
+    longitude: loc.longitude
+  });
 
   useEffect(() => {
-    navigation.setOptions({title: stepTitle});
-  }, [])
+    navigation.setOptions({ title: stepTitle });
+  }, []);
 
   const openMapApplication = () => {
     const scheme = Platform.select({ ios: 'maps:0,0?q=', android: 'geo:0,0?q=' });
@@ -31,7 +30,7 @@ export default function MapScreen({ route, navigation }) {
       android: `${scheme}${latLng}(${label})`
     });
     Linking.openURL(url);
-  }
+  };
 
   return (
     <View style={styles.mapScreen}>
@@ -41,14 +40,14 @@ export default function MapScreen({ route, navigation }) {
           latitude: location.latitude,
           longitude: location.longitude,
           latitudeDelta: 0.002965,
-          longitudeDelta: 0.002965,
+          longitudeDelta: 0.002965
         }}
         testID="map-view"
       >
         <Marker
-          coordinate={{ 
-            latitude : location.latitude, 
-            longitude : location.longitude 
+          coordinate={{
+            latitude: location.latitude,
+            longitude: location.longitude
           }}
           title={ locationTitle }
           description={ description }
@@ -62,9 +61,9 @@ export default function MapScreen({ route, navigation }) {
           onPress={ openMapApplication }
           testID="openMapsApp"
         >
-          <Text style={ styles.buttonText }>Abrir con otra aplicacion</Text>   
+          <Text style={ styles.buttonText }>Abrir con otra aplicacion</Text>
         </Pressable>
       </View>
     </View>
-  )
+  );
 }

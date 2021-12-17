@@ -1,79 +1,79 @@
-import { StyleSheet } from "react-native";
-import { colors } from "../../../styles/colors";
+import { StyleSheet } from 'react-native';
+import { colors } from '../../../styles/colors';
 
 export const styles = StyleSheet.create({
+  buttonActionsColumn: {
+    flexDirection: 'column',
+    justifyContent: 'space-evenly'
+  },
+  containerList: {
+    display: 'flex',
+    flex: 1,
+    marginLeft: 5
+  },
+  containerSimple: {
+    marginTop: 5
+  },
+  rowTitle: {
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+  rowTitleText: {
+    alignContent: 'center',
+    display: 'flex',
+    flex: 1,
+    flexGrow: 1,
+    margin: 5,
+    padding: 3
+  },
+  scrollViewCont: {
+    padding: 15
+  },
   stepCont: {
-    position: 'relative',
     backgroundColor: colors.bgStepColor,
+    borderBottomColor: 'rgba(181,181,181,0.5)',
+    borderBottomWidth: 4,
+    borderRadius: 20,
+    borderRightColor: 'rgba(181,181,181,0.5)',
+    borderRightWidth: 4,
     color: 'black',
     display: 'flex',
-    marginTop: 10,
-    marginBottom: 10,
-    padding: 15,
-    borderRightWidth: 4,
-    borderBottomWidth: 4,
-    borderRightColor: 'rgba(181,181,181,0.5)',
-    borderBottomColor: 'rgba(181,181,181,0.5)',
-    borderRadius: 20,
     fontSize: 15,
+    marginBottom: 10,
+    marginTop: 10,
+    padding: 15,
+    position: 'relative'
   },
   stepContainer: {
     backgroundColor: colors.grey,
     borderRadius: 15,
     margin: 10,
-    padding: 10,
+    padding: 10
   },
+  stepDataContainer: {},
+  stepName: {},
   stepNavbar: {
-    display: "flex",
-    flexDirection: "row",
-    flexGrow: 1,
-    alignContent: "center",
+    alignContent: 'center',
+    display: 'flex',
+    flexDirection: 'row',
+    flexGrow: 1
   },
   stepNavbar_info: {
-    display: "flex",
+    display: 'flex',
     flex: 1,
     margin: 5,
-    padding: 3,
+    padding: 3
   },
   stepNumber: {
-    fontWeight: "bold",
-  },
-  stepName: {},
-  stepDataContainer: {},
-  textBolt: {
-    fontWeight: "bold",
-  },
-  containerSimple: {
-    marginTop: 5,
-  },
-  containerList: {
-    display: "flex",
-    flex: 1,
-    marginLeft: 5,
+    fontWeight: 'bold'
   },
   testListItem: {
-    marginVertical: 5,
+    marginVertical: 5
+  },
+  textBolt: {
+    fontWeight: 'bold'
   },
   textItalic: {
-    fontStyle: "italic",
-  },
-  rowTitle: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-  },
-  rowTitleText: {
-    alignContent: "center",
-    display: "flex",
-    flex: 1,
-    flexGrow: 1,
-    margin: 5,
-    padding: 3,
-  },
-  scrollViewCont: {
-    padding: 15,
-  },
-  buttonActionsColumn:{
-    flexDirection:'column',
-    justifyContent: 'space-evenly',
+    fontStyle: 'italic'
   }
-})
+});

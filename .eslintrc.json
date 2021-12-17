@@ -1,0 +1,58 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true,
+        "node": true
+    },
+    "extends": [
+        "plugin:react/recommended",
+        "standard",
+        "plugin:react-native/all"
+    ],
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true,
+            "js": true
+        },
+        "ecmaVersion": 12,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react",
+        "react-native"
+    ],
+    "ignorePatterns": ["*.test.js", "setup-tests.js"],
+    "rules": {
+        "indent": [ "error", 2 ],
+        "react/react-in-jsx-scope": "off",
+        "react/prop-types": "off",
+        "no-tabs": "error",
+        "no-unused-vars": [
+			"warn",
+			{
+				"ignoreRestSiblings": true
+			}
+		],
+        "array-bracket-spacing": [
+			"error",
+			"always"
+		],
+        "comma-dangle": [
+			"error",
+            {"functions": "never"},
+			"always-multiline"
+		],
+        "semi": ["error", "always"],
+        "react-native/no-unused-styles": 2,
+        "react-native/split-platform-components": 2,
+        "react-native/no-inline-styles": 2,
+        "react-native/no-color-literals": 2,
+        "react-native/no-raw-text": 2,
+        "react-native/no-single-element-style-arrays": 2
+    },
+    "settings": {
+        "react": {
+            "version": "detect"
+        }
+    }
+}

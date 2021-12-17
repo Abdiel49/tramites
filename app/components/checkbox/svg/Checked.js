@@ -1,7 +1,7 @@
-import * as React from "react"
-import Svg, { Path } from "react-native-svg"
+import * as React from 'react';
+import Svg, { Path } from 'react-native-svg';
 
-function Checked(props) {
+function Checked (props) {
   return (
     <Svg
       width={24}
@@ -19,7 +19,7 @@ function Checked(props) {
         fill="#0D0D0D"
       />
     </Svg>
-  )
+  );
 }
 
 export default Checked;

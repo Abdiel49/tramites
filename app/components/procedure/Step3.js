@@ -1,32 +1,31 @@
-import React, { useState } from "react";
-import { View, Text, Pressable } from "react-native";
-import Checkbox from "../checkbox/Checkbox";
-import SeeMore from "../seemore/SeeMore";
-import { styles } from "./styles/step";
+import React, { useState } from 'react';
+import { View, Text, Pressable } from 'react-native';
+import Checkbox from '../checkbox/Checkbox';
+import SeeMore from '../seemore/SeeMore';
+import { styles } from './styles/step';
 
-export default function Step3({ stepNumber, value, onCheckStep }) {
-  
-  const [stepData, setStepData] = useState(false);
-  const [listMat, setListMat] = useState(false);
-  
+export default function Step3 ({ stepNumber, value, onCheckStep }) {
+  const [ stepData, setStepData ] = useState(false);
+  const [ listMat, setListMat ] = useState(false);
+
   return (
     <View style={styles.stepCont}>
       <View style={styles.stepNavbar}>
         <View style={styles.stepNavbar_info}>
-          <Pressable 
+          <Pressable
             onPress={() => setStepData(!stepData)}
           >
             <Text style={styles.stepNumber}>{stepNumber}</Text>
             <Text style={styles.stepTitle}>Venta de Matrícula.</Text>
           </Pressable>
-          <SeeMore 
+          <SeeMore
             value={ stepData }
             onPress={() => setStepData(!stepData)}
           />
         </View>
-        <Checkbox 
-          value={ value } 
-          onCheck={ onCheckStep } 
+        <Checkbox
+          value={ value }
+          onCheck={ onCheckStep }
         />
       </View>
       {stepData && (
@@ -45,8 +44,8 @@ export default function Step3({ stepNumber, value, onCheckStep }) {
                   La matrícula es válida para la gestión 2 / 2017
                 </Text>
               </Pressable>
-              <SeeMore 
-                value={listMat} 
+              <SeeMore
+                value={listMat}
                 onPress={() => setListMat(!listMat)}
               />
             </View>

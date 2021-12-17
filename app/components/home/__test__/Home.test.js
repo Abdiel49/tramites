@@ -1,25 +1,25 @@
-import React from "react";
-import { render, waitFor } from "@testing-library/react-native";
-import Home from "../HomeScreen";
-import axios from "axios";
+import React from 'react';
+import { render, waitFor } from '@testing-library/react-native';
+import Home from '../HomeScreen';
+import axios from 'axios';
 
 let tramites;
 beforeAll(async () => {
-  await axios.get("http://localhost:3000/api/tramites/umss").then((res) => {
+  await axios.get('http://localhost:3000/api/tramites/umss').then((res) => {
     tramites = res.data;
   });
 });
 
-describe("Pruebas en HomeScreen", () => {
-  it("Se renderiza correctamente", () => {
+describe('Pruebas en HomeScreen', () => {
+  it('Se renderiza correctamente', () => {
     render(<Home />);
   });
 
-  it("Un boton para cada tramite (3tramites 3botones)", async () => {
+  it('Un boton para cada tramite (3tramites 3botones)', async () => {
     const { getAllByTestId } = render(<Home />);
 
     await waitFor(() => {
-      expect(getAllByTestId('btm-tramite').length).toBe(tramites.length+1);
+      expect(getAllByTestId('btm-tramite').length).toBe(tramites.length + 1);
     });
   });
 
@@ -27,7 +27,7 @@ describe("Pruebas en HomeScreen", () => {
     const { getAllByText } = render(<Home />);
 
     await waitFor(() => {
-      expect(getAllByText("Inscripción a una Carrera").length).toBe(1);
+      expect(getAllByText('Inscripción a una Carrera').length).toBe(1);
     });
   });
 

@@ -1,20 +1,20 @@
-import React from "react";
-import { render, waitFor } from "@testing-library/react-native";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import Tramite from "../TramiteScreen";
-import axios from "axios";
+import React from 'react';
+import { render, waitFor } from '@testing-library/react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import Tramite from '../TramiteScreen';
+import axios from 'axios';
 
 let tramites;
 
 let mockedNavigate = jest.fn();
 
-jest.mock("@react-navigation/native", () => {
-  const actualNav = jest.requireActual("@react-navigation/native");
+jest.mock('@react-navigation/native', () => {
+  const actualNav = jest.requireActual('@react-navigation/native');
   return {
     ...actualNav,
     useNavigation: () => ({
-      navigate: mockedNavigate,
-    }),
+      navigate: mockedNavigate
+    })
   };
 });
 
@@ -24,42 +24,42 @@ beforeEach(async () => {
 });
 
 beforeAll(async () => {
-  await axios.get("http://localhost:3000/api/tramites/umss").then((res) => {
+  await axios.get('http://localhost:3000/api/tramites/umss').then((res) => {
     tramites = res.data;
   });
 });
 
-describe("Requisitos de los Tramites", () => {
+describe('Requisitos de los Tramites', () => {
   const navigation = {
     setOptions: jest.fn(),
-    navigate: mockedNavigate(),
+    navigate: mockedNavigate()
   };
 
   it('Requisitos del Tramite "Cambio de Carrera" son 6', async () => {
     const route = {
       params: {
-        tramite: tramites[0],
-      },
+        tramite: tramites[0]
+      }
     };
     const { getAllByTestId } = render(
       <Tramite route={route} navigation={navigation} />
     );
     await waitFor(() => {
-      expect(getAllByTestId("req-test").length).toBe(6);
+      expect(getAllByTestId('req-test').length).toBe(6);
     });
   });
 
   it('Requisitos del Tramite "Certificado Académico" son 9', async () => {
     const route = {
       params: {
-        tramite: tramites[1],
-      },
+        tramite: tramites[1]
+      }
     };
     const { getAllByTestId } = render(
       <Tramite route={route} navigation={navigation} />
     );
     await waitFor(() => {
-      expect(getAllByTestId("req-test").length).toBe(9);
+      expect(getAllByTestId('req-test').length).toBe(9);
     });
   });
 });

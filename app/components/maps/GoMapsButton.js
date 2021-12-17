@@ -1,16 +1,15 @@
-import React from 'react'
-import { Pressable } from 'react-native'
-import { useNavigation } from '@react-navigation/native'
+import React from 'react';
+import { Pressable } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import MapIcon from '../icons/MapIcon';
 
-export default function GoMapsButton({ data }) {
-  
+export default function GoMapsButton ({ data }) {
   const navigation = useNavigation();
-  
-  const handlePress = async() => {
-    await navigation.navigate("maps", { data: data })
+
+  const handlePress = async () => {
+    await navigation.navigate('maps', { data: data });
   };
-  
+
   return (
     <Pressable
       onPress={ handlePress }
@@ -18,6 +17,5 @@ export default function GoMapsButton({ data }) {
     >
       <MapIcon testID="mapIconComponent"/>
     </Pressable>
-    )
+  );
 }
-  

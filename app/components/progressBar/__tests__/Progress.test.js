@@ -1,20 +1,18 @@
 import React from 'react';
-import { render } from '@testing-library/react-native'
-import Progress from '../../../components/progressBar/Progress'
+import { render } from '@testing-library/react-native';
+import Progress from '../../../components/progressBar/Progress';
 // // use this for the next error on run your test
 // // You are trying to `import` a file after the Jest environment has been torn down.
-// // jest.useFakeTimers(); 
-
+// // jest.useFakeTimers();
 
 describe('Pruebas en el componente de la barra de progreso', () => {
-  
-  it ('renders correctly', () => {
+  it('renders correctly', () => {
     const data = {
       step1: true,
       step2: true,
-      step3: false,
-    }
-    const {getByTestId, getByText } = render(<Progress data={data} />);
+      step3: false
+    };
+    const { getByTestId, getByText } = render(<Progress data={data} />);
     getByTestId('progressBar.percent');
     getByTestId('progressBar.progressBar');
     getByText('67 %');
@@ -25,10 +23,10 @@ describe('Pruebas en el componente de la barra de progreso', () => {
       step1: true,
       step2: true,
       step3: false,
-      step4: false,
-    }
-    const {getByTestId, getByText } = render(<Progress data={data} />);
+      step4: false
+    };
+    const { getByTestId, getByText } = render(<Progress data={data} />);
     getByTestId('progressBar.percent');
-    getByText('50 %')
+    getByText('50 %');
   });
-})
+});

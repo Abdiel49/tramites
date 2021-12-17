@@ -1,5 +1,5 @@
-import * as React from "react"
-import Svg, { G, Path, Defs, ClipPath } from "react-native-svg"
+import * as React from 'react';
+import Svg, { G, Path, Defs, ClipPath } from 'react-native-svg';
 
 const MapIcon = (props) => (
   <Svg
@@ -37,6 +37,6 @@ const MapIcon = (props) => (
       </ClipPath>
     </Defs>
   </Svg>
-)
+);
 
 export default MapIcon;
