@@ -3,9 +3,9 @@ import { render, waitFor } from '@testing-library/react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Tramite from '../TramiteScreen';
 import axios from 'axios';
+import { networkEnv } from "../../../../network";
 
 let tramites;
-
 let mockedNavigate = jest.fn();
 
 jest.mock('@react-navigation/native', () => {
@@ -24,7 +24,7 @@ beforeEach(async () => {
 });
 
 beforeAll(async () => {
-  await axios.get('http://localhost:3000/api/tramites/umss').then((res) => {
+  await axios.get(`${networkEnv}/api/tramites/umss`).then((res) => {
     tramites = res.data;
   });
 });
