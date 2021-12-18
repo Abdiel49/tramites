@@ -10,9 +10,9 @@ import MapView, { Marker } from 'react-native-maps';
 import { styles } from './mapScreen.style';
 
 export default function MapScreen ({ route, navigation }) {
-  const [ data, setData ] = useState(route.params.data || {});
+  const [ data ] = useState(route.params.data || {});
   const { description, location: loc, locationTitle, stepTitle } = data;
-  const [ location, setLocation ] = useState({
+  const [ location ] = useState({
     latitude: loc.latitude,
     longitude: loc.longitude
   });

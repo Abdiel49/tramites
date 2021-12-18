@@ -77,7 +77,7 @@ const Tramite = ({ route, navigation }) => {
               !!mapData?.haveLocation && <GoMapsButton data={mapData} />
             }
           </View>
-          <Text style={{ fontWeight: 'bold' }}>Requisitos:</Text>
+          <Text style={ tramiteStyle.textoNegrita }>Requisitos:</Text>
           {
             info.requisitos.map((req) => (
               <Requisito
@@ -94,7 +94,7 @@ const Tramite = ({ route, navigation }) => {
                 }
               />
             ))}
-          <View style={{ padding: 50 }}></View>
+          <View style={ gStyles.padding50 }></View>
         </ScrollView>
       </SafeAreaView>
     </View>

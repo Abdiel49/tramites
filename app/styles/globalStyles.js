@@ -7,5 +7,9 @@ export const gStyles = StyleSheet.create({
   },
   scrollViewCont: {
     padding: 15
+  },
+  colors,
+  padding50: {
+    padding: 50
   }
 });

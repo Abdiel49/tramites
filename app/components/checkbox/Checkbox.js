@@ -5,9 +5,7 @@ import UnCheck from './svg/UnCheck';
 
 export default function Checkbox ({
   value = false,
-  onCheck,
-  colorUnCheck = '',
-  colorCheck = ''
+  onCheck
 }) {
   return (
     <Pressable

@@ -10,9 +10,11 @@ export default function Progress ({ data = {} }) {
     let items = 0;
     const dataKeysArr = Object.keys(data);
     if (dataKeysArr.length > 0) {
-      dataKeysArr.map(step => {
-        if (data[step] === true) items++;
-      });
+      dataKeysArr.map(step => (
+        items = items + (data[step] && 1)
+      ));
+      // if (data[step] === true) items++;
+      // });
       const value = 100 / dataKeysArr.length;
       const per = items * value;
       setPercent(Math.round(per));

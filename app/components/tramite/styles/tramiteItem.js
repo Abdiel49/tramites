@@ -40,6 +40,13 @@ const tramiteStyle = StyleSheet.create({
   },
   stepDesc: {
     fontSize: 15
+  },
+  texto: {
+    fontSize: 15,
+    paddingHorizontal: 16
+  },
+  textoNegrita: {
+    fontWeight: 'bold'
   }
 });
 

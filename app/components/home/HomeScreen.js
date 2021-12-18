@@ -3,9 +3,7 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  View,
   Platform,
-  SafeAreaView,
   ScrollView
 } from 'react-native';
 import axios from 'axios';

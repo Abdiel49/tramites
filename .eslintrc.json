@@ -6,8 +6,7 @@
     },
     "extends": [
         "plugin:react/recommended",
-        "standard",
-        "plugin:react-native/all"
+        "standard"
     ],
     "parserOptions": {
         "ecmaFeatures": {
@@ -39,14 +38,13 @@
 		],
         "comma-dangle": [
 			"error",
-            {"functions": "never"},
+            { "functions": "never" },
 			"always-multiline"
 		],
         "semi": ["error", "always"],
         "react-native/no-unused-styles": 2,
         "react-native/split-platform-components": 2,
         "react-native/no-inline-styles": 2,
-        "react-native/no-color-literals": 2,
         "react-native/no-raw-text": 2,
         "react-native/no-single-element-style-arrays": 2
     },

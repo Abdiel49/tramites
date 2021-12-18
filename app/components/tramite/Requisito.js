@@ -2,6 +2,7 @@ import React from 'react';
 import { Text, View } from 'react-native';
 import Checkbox from '../checkbox/Checkbox';
 import GoMapsButton from '../maps/GoMapsButton';
+import { tramiteStyle } from './styles/tramiteItem';
 
 const Requisito = ({ style, req, mapData, check, onChecked }) => {
   return (
@@ -19,10 +20,7 @@ const Requisito = ({ style, req, mapData, check, onChecked }) => {
         }
       </View>
       <Text
-        style={{
-          fontSize: 15,
-          paddingHorizontal: 16
-        }}
+        style={tramiteStyle.texto}
       >
         {req}
       </Text>
