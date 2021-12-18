@@ -10,7 +10,7 @@ import { networkEnv } from '../../../network';
 
 const Home = ({ navigation }) => {
   const [ tramites, setTramites ] = useState([]);
-  const [ apiBase, setApiBase ] = useState(networkEnv);
+  const [ apiBase ] = useState(networkEnv);
 
   useEffect(() => {
     let isApiSubscribed = true;

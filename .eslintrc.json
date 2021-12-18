@@ -23,7 +23,7 @@
     "ignorePatterns": ["*.test.js", "setup-tests.js"],
     "rules": {
         "indent": [ "error", 2 ],
-        "react/react-in-jsx-scope": "off",
+        "react/react-in-jsx-scope": 1,
         "react/prop-types": "off",
         "no-tabs": "error",
         "no-unused-vars": [
