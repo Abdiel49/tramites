@@ -7,6 +7,7 @@ import {
 } from "react-native";
 import axios from "axios";
 import { networkEnv } from "../../../network";
+import LocalPush from "../notifications/LocalPush";
 
 const Home = ({ navigation }) => {
   const [tramites, setTramites] = useState([]);
@@ -52,7 +53,9 @@ const Home = ({ navigation }) => {
           >
             <Text style={styles.texteStyle}>{tramite.titulo}</Text>
           </TouchableOpacity>
-        ))}
+        ))
+      }
+      <LocalPush/>
     </ScrollView>
   );
 };
