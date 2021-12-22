@@ -15,7 +15,3 @@ web-build/
 
 # macOS
 .DS_Store
-
-# network env
-
-network.js
