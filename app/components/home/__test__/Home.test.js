@@ -21,15 +21,7 @@ describe("Pruebas en HomeScreen", () => {
     const { getAllByTestId } = render(<Home />);
 
     await waitFor(() => {
-      expect(getAllByTestId('btm-tramite').length).toBe(tramites.length+1);
-    });
-  });
-
-  it('Existencia de un boton con el titulo del tramite "Inscripcion a una Carrera"', async () => {
-    const { getAllByText } = render(<Home />);
-
-    await waitFor(() => {
-      expect(getAllByText("Inscripción a una Carrera").length).toBe(1);
+      expect(getAllByTestId('btm-tramite').length).toBe(tramites.length);
     });
   });
 
