@@ -4,17 +4,15 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  ScrollView,
-  TextInput
+  ScrollView
 } from "react-native";
 import axios from "axios";
 import { networkEnv } from "../../../network";
-import LupaIcon from "./LupaIcon";
+import Buscador from "./Buscador";
 
 const Home = ({ navigation }) => {
   const [tramites, setTramites] = useState(null);
   const [apiBase, setApiBase] = useState(networkEnv);
-  const [textoBuscador, setTextoBuscador] = useState('');
   const [tramitesFilt, setTramitesFilt] = useState(null);
 
   useEffect(() => {
@@ -35,81 +33,12 @@ const Home = ({ navigation }) => {
     };
   }, [apiBase]);
 
-  const quitarTildes = (str) => {
-    return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-  } 
-
-  const buscar = () => {
-    if (textoBuscador != '') {
-      const textoLimpio = quitarTildes(textoBuscador.toLowerCase());
-
-      const resulBusq = tramites.filter((tramite) => {
-        let cumple = false
-        const nombreTramite = quitarTildes(tramite.titulo.toLowerCase());
-        const descTramite = quitarTildes(tramite.descripcion.toLowerCase());
-        let nombUbicacion = null;
-        let nombUbicacionReq = [];
-  
-        if (tramite.mapData) {
-          nombUbicacion = quitarTildes(tramite.mapData.locationTitle.toLowerCase());
-        }
-  
-        tramite.requisitos.forEach(requisito => {
-          if (requisito.mapData) {
-            nombUbicacionReq.push(quitarTildes(requisito.mapData.locationTitle.toLowerCase()));
-          }
-        });
-  
-        if (nombreTramite.includes(textoLimpio)
-            || descTramite.includes(textoLimpio)) {
-              cumple = true;
-        } else if (nombUbicacion){
-          if (nombUbicacion.includes(textoLimpio)) {
-            cumple = true;
-          }
-        }
-        
-        if (nombUbicacionReq.length > 0){
-          nombUbicacionReq.forEach(ubicEnReq => {
-            if (ubicEnReq.includes(textoLimpio)) {
-              cumple = true;
-            }
-          });
-        }
-  
-        return cumple;
-      })
-      setTramitesFilt(resulBusq);
-    }
-  };
-
-  useEffect(() => {
-    if (textoBuscador == '') {
-      setTramitesFilt(tramites);
-    } else {
-      buscar();
-    }
-  }, [textoBuscador])
-
   return (
     <View>
-      <View style={styles.contBuscador}>
-        <TextInput
-          style={
-            (textoBuscador=='')? (styles.buscador):(styles.buscadorFull)
-          }
-          onChangeText={setTextoBuscador}
-          value={textoBuscador}
-          placeholder="Buscar..."
-        />
-        {
-          (textoBuscador=='')&&(
-            <View style={styles.lupaIcon}>
-              <LupaIcon/>                 
-            </View>
-          )
-        }
-      </View>
+      <Buscador 
+        tramites={tramites} 
+        setTramites={setTramitesFilt}
+      />
       <ScrollView>
         {
           (tramitesFilt)?
@@ -163,43 +92,6 @@ const styles = StyleSheet.create({
   texteStyle: {
     color: "white",
     fontSize: 17,
-  },
-
-  buscador: {
-    marginVertical: 10,
-    marginRight: 10,
-    width: '75%',
-    height: 45,
-    fontSize: 20,
-    flexDirection: 'column',
-    borderWidth: 0,
-  },
-
-  buscadorFull: {
-    marginVertical: 10,
-    paddingHorizontal: 14.5,
-    width: '100%',
-    height: 45,
-    fontSize: 20,
-    flexDirection: 'column',
-    borderWidth: 0,
-  },
-
-  espaciado: {
-    padding: 50
-  },
-
-  contBuscador: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    borderWidth: 2,
-    marginVertical: 10,
-    marginHorizontal: 10
-  },
-
-  lupaIcon: {
-    justifyContent: 'center'
   },
 
   textoInfo: {
