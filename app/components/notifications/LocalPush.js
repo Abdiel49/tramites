@@ -4,13 +4,6 @@ import * as Notifications from 'expo-notifications';
 import { registerForPushNotificationsAsync } from './registerForPushNotificationsAsyc';
 import { schedulePushNotification } from './schedulePushNotification';
 
-Notifications.setNotificationHandler({
-  handleNotification: async () => ({
-    shouldShowAlert: true,
-    shouldPlaySound: true,
-    shouldSetBadge: false,
-  }),
-});
 
 const LocalPush = () => {
 
