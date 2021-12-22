@@ -95,26 +95,22 @@ const Home = ({ navigation }) => {
     <View>
       <View style={styles.contBuscador}>
         <TextInput
-          style={styles.buscador}
+          style={
+            (textoBuscador=='')? (styles.buscador):(styles.buscadorFull)
+          }
           onChangeText={setTextoBuscador}
           value={textoBuscador}
-          placeholder="Buscar"
+          placeholder="Buscar..."
         />
-        <TouchableOpacity
-          style={styles.sCbuttonStyle}
-          onPress={() => buscar()}
-        >
-          <LupaIcon/>                 
-        </TouchableOpacity>
+        {
+          (textoBuscador=='')&&(
+            <View style={styles.lupaIcon}>
+              <LupaIcon/>                 
+            </View>
+          )
+        }
       </View>
       <ScrollView>
-        <TouchableOpacity
-          testID="btm-tramite"
-          style={styles.buttonStyle}
-          onPress={() => navigation.navigate("tramiteInscripcion")}
-        >
-          <Text style={styles.texteStyle}>Inscripción a una Carrera</Text>
-        </TouchableOpacity>
         {
           (tramitesFilt)?
           ( 
@@ -164,16 +160,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
 
-  sCbuttonStyle: {
-    width: 50,
-    height: 50,
-    backgroundColor: "#0F354A",
-    padding: 10,
-    borderRadius: 10,
-    flexDirection: 'column',
-    marginTop: 5
-  },
-
   texteStyle: {
     color: "white",
     fontSize: 17,
@@ -184,11 +170,19 @@ const styles = StyleSheet.create({
     marginRight: 10,
     width: '75%',
     height: 45,
-    borderWidth: 2,
-    borderStyle: 'solid',
-    padding: 10,
-    fontSize: 16,
-    flexDirection: 'column'
+    fontSize: 20,
+    flexDirection: 'column',
+    borderWidth: 0,
+  },
+
+  buscadorFull: {
+    marginVertical: 10,
+    paddingHorizontal: 14.5,
+    width: '100%',
+    height: 45,
+    fontSize: 20,
+    flexDirection: 'column',
+    borderWidth: 0,
   },
 
   espaciado: {
@@ -198,12 +192,14 @@ const styles = StyleSheet.create({
   contBuscador: {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    borderWidth: 2,
+    marginVertical: 10,
+    marginHorizontal: 10
   },
 
   lupaIcon: {
-    width: '100%',
-    height: '100%'
+    justifyContent: 'center'
   },
 
   textoInfo: {
