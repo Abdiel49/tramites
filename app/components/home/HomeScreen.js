@@ -139,6 +139,10 @@ const styles = StyleSheet.create({
     fontSize: 17,
   },
 
+  espaciado: {
+    padding: 50,
+  },
+
   textoInfo: {
     fontSize: 30,
     marginVertical: '30%',

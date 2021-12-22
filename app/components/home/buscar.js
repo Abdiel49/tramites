@@ -4,7 +4,7 @@ export const buscar = (textoBuscador, tramites) => {
     return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
   };
 
-  if (tramites.length > 0 && textoBuscador != '') {
+  if (tramites && tramites.length > 0 && textoBuscador != '') {
     const textoLimpio = quitarTildes(textoBuscador.toLowerCase());
 
     const resulBusq = tramites.filter((tramite) => {
