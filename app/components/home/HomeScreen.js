@@ -1,4 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, {
+  useEffect, 
+  useState, 
+  useRef 
+} from "react";
 import {
   View,
   StyleSheet,
@@ -7,13 +11,54 @@ import {
   ScrollView
 } from "react-native";
 import axios from "axios";
+import * as Notifications from 'expo-notifications';
+
 import { networkEnv } from "../../../network";
 import Buscador from "./Buscador";
+import { registerForPushNotificationsAsync } from "../notifications/registerForPushNotificationsAsyc";
+import { schedulePushNotification } from "../notifications/schedulePushNotification";
+
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: true,
+    shouldSetBadge: false,
+  }),
+});
 
 const Home = ({ navigation }) => {
   const [tramites, setTramites] = useState(null);
   const [apiBase, setApiBase] = useState(networkEnv);
   const [tramitesFilt, setTramitesFilt] = useState(null);
+
+  const [expoPushToken, setExpoPushToken] = useState('');
+  const [notification, setNotification] = useState(false);
+  const notificationListener = useRef();
+  const responseListener = useRef();
+
+  useEffect(() => {
+    registerForPushNotificationsAsync( Notifications ).then(token => setExpoPushToken(token));
+
+    notificationListener.current = Notifications.addNotificationReceivedListener(notification => {
+      setNotification(notification);
+    });
+
+    responseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
+      console.log(response);
+    });
+    const data = {
+      title: "Hey Parece que tienes tramites por terminar 📬",
+      body: 'Tienes undefinet tramites pendientes',
+      data: { data: 'goes here' },
+    };
+
+    schedulePushNotification( Notifications, data, 4 );
+
+    return () => {
+      Notifications.removeNotificationSubscription(notificationListener.current);
+      Notifications.removeNotificationSubscription(responseListener.current);
+    };
+  }, [expoPushToken]);
 
   useEffect(() => {
     let isApiSubscribed = true;
