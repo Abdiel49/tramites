@@ -24,9 +24,11 @@ describe('Testeando el buscador Buscador', () => {
         const tramitesFilt = buscar('certificado', tramites);
         const tramiteCertAcademico = tramitesFilt[0].titulo.toLowerCase();
         const tramiteCertEstudios = tramitesFilt[1].titulo.toLowerCase();
-        expect(tramitesFilt.length).toBe(2);
+        const tramiteExtCert = tramitesFilt[2].titulo.toLowerCase();
+        expect(tramitesFilt.length).toBe(3); // 3 por ahora
         expect(tramiteCertAcademico.includes('certificado')).toBe(true);
         expect(tramiteCertEstudios.includes('certificado')).toBe(true);
+        expect(tramiteExtCert.includes('certificado')).toBe(true);
     });
 
     it('Buscar en la descripcion de los tramites la palabra "manila" (Son 3 por ahora)', () => {

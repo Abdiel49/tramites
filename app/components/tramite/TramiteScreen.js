@@ -19,10 +19,14 @@ const Tramite = ({ route, navigation }) => {
   const [tramitesStorage, setTramitesStorage] = useState([]);
 
   const generarChecks = () => {
-    let listaChecks = [info.requisitos.length];
-    for (let i = 0; i < info.requisitos.length; i++) {
-      listaChecks[i] = false;
+    let listaChecks = [];
+    for (let i = 0; i < info.datos.length; i++) {
+      let dato = info.datos[i];
+      for (let j = 0; j < dato.contenido.length; j++) {
+        listaChecks.push(false);
+      }
     }
+
     return listaChecks;
   };
 
@@ -77,23 +81,30 @@ const Tramite = ({ route, navigation }) => {
               !!mapData?.haveLocation && <GoMapsButton data={mapData} />
             }
           </View>
-          <Text style={{ fontWeight: "bold" }}>Requisitos:</Text>
           {
-            info.requisitos.map((req) => (
-              <Requisito
-                key={req.id}
-                style={tramiteStyle.stepCont2}
-                req={req.requisito}
-                check={tramitesStorage[req.id]}
-                mapData={req.mapData || {}}
-                onChecked={() =>
-                  setTramitesStorage({
-                    ...tramitesStorage,
-                    [req.id]: !tramitesStorage[req.id],
-                  })
+            info.datos.map((cont) => (
+              <View key={cont.id}>
+                <Text style={{ fontWeight: "bold", fontSize: 20 }}>{cont.nombreCont}</Text>
+                {
+                  (cont.contenido.map((sub) => (
+                    <Requisito
+                      key={sub.id}
+                      style={tramiteStyle.stepCont2}
+                      req={sub.subCont}
+                      check={tramitesStorage[sub.id]}
+                      mapData={sub.mapData || {}}
+                      onChecked={() =>
+                        setTramitesStorage({
+                          ...tramitesStorage,
+                          [sub.id]: !tramitesStorage[sub.id],
+                        })
+                      }
+                    />
+                  )))
                 }
-              />
-          ))}
+              </View>
+            ))
+          }
           <View style={{ padding: 50 }}></View>
         </ScrollView>
       </SafeAreaView>
