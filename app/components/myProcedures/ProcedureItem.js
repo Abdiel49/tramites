@@ -2,14 +2,14 @@ import React from 'react'
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import Progress from '../progressBar/Progress'
 
-export default function ProcedureItem() {
+export default function ProcedureItem({ data }) {
+  console.log(data)
   return (
     <TouchableOpacity
       style={styles.buttonStyle}
     >
-      <Text style={styles.texteStyle}>Holas</Text>
+      <Text style={styles.texteStyle}>holas</Text>
       <Progress
-       
       />
     </TouchableOpacity>
   )
