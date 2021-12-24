@@ -5,9 +5,7 @@ export const schedulePushNotification = async (
     data, 
     seconds = 3 
   ) => {
-  if( Platform.OS === 'web' ){
-    alert(title, body)
-  }else{
+  if (Platform.OS === 'android' || Platform.OS === 'ios') {
     await Notifications.scheduleNotificationAsync({
       content: data,
       trigger: { seconds },

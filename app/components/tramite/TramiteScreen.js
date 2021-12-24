@@ -6,6 +6,7 @@ import Progress from "../progressBar/Progress";
 import Requisito from "./Requisito";
 import GoMapsButton from "../maps/GoMapsButton";
 import tramiteStyle from "./styles/tramiteItem";
+import { getLocalData, storeLocalData } from "../../services/localStorage";
 
 const Tramite = ({ route, navigation }) => {
   const { tramite: info } = route.params;
@@ -17,6 +18,7 @@ const Tramite = ({ route, navigation }) => {
   }, []);
 
   const [tramitesStorage, setTramitesStorage] = useState([]);
+  const [procedureStored, setProcedureStored] = useState(false)
 
   const generarChecks = () => {
     let listaChecks = [];
@@ -55,6 +57,39 @@ const Tramite = ({ route, navigation }) => {
     }
   };
 
+  const someProcedureChecked = () => {
+    const keys = Object.keys(tramitesStorage);
+    const finded = keys.find(item => tramitesStorage[item])
+      // tramitesStorage[item] === true
+      console.log({finded})
+    // })
+    // const someCheck = tramitesStorage.length
+    // console.log(someCheck)
+    if( finded ){
+      storeProcedure
+    }
+  }
+
+  const storeProcedure = async () => {
+    // if(!procedureStored){
+      if(someProcedureChecked){
+        try {
+          const key = 'my-procedures';
+          const myProcedures = await getLocalData( key );
+          const value = {
+            ...myProcedures,
+            info
+          }
+          await storeLocalData(key, value);
+          setProcedureStored(true);
+        } catch (e) {
+          console.error(e)
+        }
+
+      }
+    // }
+  }
+
   useEffect(() => {
     async function loadData() {
       let data = await getData();
@@ -65,6 +100,7 @@ const Tramite = ({ route, navigation }) => {
 
   useEffect(() => {
     storeData(tramitesStorage);
+    someProcedureChecked();
   }, [tramitesStorage]);
 
   return (
