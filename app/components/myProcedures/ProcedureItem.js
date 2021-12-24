@@ -1,14 +1,25 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import Progress from '../progressBar/Progress'
 
 export default function ProcedureItem({ data }) {
-  console.log(data)
+  
+  const [chechsStored, setChechsStored] = useState({})
+
+  useEffect(() => {
+    let checks = {};
+    const getLocalData = async () => {
+      checks = await getLocalData(data.nombre);
+      setChechsStored(checks);
+    }
+    getLocalData();
+  }, [data])
+
   return (
     <TouchableOpacity
       style={styles.buttonStyle}
     >
-      <Text style={styles.texteStyle}>holas</Text>
+      <Text style={styles.texteStyle}>{data.titulo}</Text>
       <Progress
       />
     </TouchableOpacity>

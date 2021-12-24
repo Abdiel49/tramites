@@ -5,25 +5,34 @@ import ProcedureItem from './ProcedureItem'
 
 const MyProcedures = () => {
 
+  const [data, setData] = useState(null)
   const [myProcedures, setMyProcedures] = useState({})
-  const [procedureKeys, setProcedureKeys] = useState()  
+  const [procedureKeys, setProcedureKeys] = useState([])  
   const key = 'my-procedures';
 
   useEffect(async () => {
-    const data = await getLocalData(key);
-    setProcedureKeys(Object.keys(data))
-    setMyProcedures(data);
+    let dat = {}
+    const traerDatos = async()=>{
+      dat = await getLocalData(key);
+      // setData(dat);
+      setMyProcedures(dat);
+    }
+    traerDatos();
   }, [])
+  
+  useEffect(() => {
+    setProcedureKeys(Object.keys(myProcedures))
+  }, [myProcedures])
 
   return (
     <View>
       {
-        procedureKeys && procedureKeys.map( item => (
+        !!procedureKeys !== null ? procedureKeys.map( item => (
           <ProcedureItem
             data={myProcedures[item]}
           />
 
-        ))
+        )): null
       }
       
     </View>
