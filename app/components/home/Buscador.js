@@ -37,9 +37,10 @@ export default Buscador;
 
 const styles = StyleSheet.create({
   buscador: {
+    paddingHorizontal: '1%',
     marginVertical: 10,
-    marginRight: 10,
-    width: '75%',
+    marginLeft: 15,
+    width: '80%',
     height: 45,
     fontSize: 20,
     flexDirection: 'column',
@@ -48,7 +49,8 @@ const styles = StyleSheet.create({
 
   buscadorFull: {
     marginVertical: 10,
-    paddingHorizontal: 14.5,
+    marginLeft: 15,
+    paddingHorizontal: '1%',
     width: '100%',
     height: 45,
     fontSize: 20,
@@ -59,13 +61,16 @@ const styles = StyleSheet.create({
   contBuscador: {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'center',
+    //justifyContent: 'center',
     borderWidth: 2,
     marginVertical: 10,
     marginHorizontal: 10
   },
 
   lupaIcon: {
-    justifyContent: 'center'
+    marginLeft: 'auto',
+    marginRight: 10,
+    justifyContent: 'center',
+    //width: '15%'
   },
 });

@@ -18,11 +18,14 @@ export const buscar = (textoBuscador, tramites) => {
           nombUbicacion = quitarTildes(tramite.mapData.locationTitle.toLowerCase());
       }
 
-      tramite.requisitos.forEach(requisito => {
-          if (requisito.mapData) {
-          nombUbicacionReq.push(quitarTildes(requisito.mapData.locationTitle.toLowerCase()));
-          }
+      tramite.datos.forEach(dato => {
+        dato.contenido.forEach(sub => {
+            if (sub.mapData) {
+              nombUbicacionReq.push(quitarTildes(sub.mapData.locationTitle.toLowerCase()));
+            }
+        });
       });
+
 
       if (nombreTramite.includes(textoLimpio)
           || descTramite.includes(textoLimpio)) {
