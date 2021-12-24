@@ -59,26 +59,22 @@ const Tramite = ({ route, navigation }) => {
 
   const someProcedureChecked = () => {
     const keys = Object.keys(tramitesStorage);
-    const finded = keys.find(item => tramitesStorage[item])
-      // tramitesStorage[item] === true
-      console.log({finded})
-    // })
-    // const someCheck = tramitesStorage.length
-    // console.log(someCheck)
-    if( finded ){
-      storeProcedure
+    const somechecked = keys.find(item => tramitesStorage[item] == true) || false;
+ 
+    if( somechecked ){
+      storeProcedure()
     }
   }
 
   const storeProcedure = async () => {
-    // if(!procedureStored){
+    if(!procedureStored){
       if(someProcedureChecked){
         try {
           const key = 'my-procedures';
           const myProcedures = await getLocalData( key );
           const value = {
             ...myProcedures,
-            info
+            [info.nombre]: info
           }
           await storeLocalData(key, value);
           setProcedureStored(true);
@@ -87,7 +83,7 @@ const Tramite = ({ route, navigation }) => {
         }
 
       }
-    // }
+    }
   }
 
   useEffect(() => {
