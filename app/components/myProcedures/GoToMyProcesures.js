@@ -6,9 +6,6 @@ import { colors } from '../../styles/colors';
 
 const GoToMyProcesures = () => {
   const navigation = useNavigation();
-  useEffect(() => {
-    console.log(navigation)
-  }, [navigation])
   return (
     <TouchableHighlight
       style={styles.icon}
