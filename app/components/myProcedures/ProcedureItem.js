@@ -12,7 +12,6 @@ export default function ProcedureItem({ data }) {
   useEffect(() => {
     getLocalData(data.nombre)
     .then(checks => {
-      // console.log(checks)
       setChecksStored(checks)
     })
     .catch(err => console.log(err));
@@ -31,7 +30,9 @@ export default function ProcedureItem({ data }) {
     >
       <Text style={styles.texteStyle}>{data.titulo}</Text>
       <Progress
-        data={checksStored}
+        textWhite={ true }
+        data={ checksStored }
+        isBgDark={ true }
       />
     </TouchableOpacity>
   )
