@@ -16,7 +16,9 @@ import * as Notifications from 'expo-notifications';
 import { networkEnv } from "../../../network";
 import Buscador from "./Buscador";
 import { registerForPushNotificationsAsync } from "../notifications/registerForPushNotificationsAsyc";
-import { schedulePushNotification } from "../notifications/schedulePushNotification";
+
+import updateData from '../../assets/updateData.json'
+import { buildNotification } from "../notifications/buildNotification";
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -35,7 +37,7 @@ const Home = ({ navigation }) => {
   const [notification, setNotification] = useState(false);
   const notificationListener = useRef();
   const responseListener = useRef();
-
+  
   useEffect(() => {
     registerForPushNotificationsAsync( Notifications ).then(token => setExpoPushToken(token));
 
@@ -46,19 +48,26 @@ const Home = ({ navigation }) => {
     responseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
       console.log(response);
     });
-    const data = {
-      title: "Hey Parece que tienes tramites por terminar 📬",
-      body: 'Tienes undefinet tramites pendientes',
-      data: { data: 'goes here' },
-    };
 
-    schedulePushNotification( Notifications, data, 4 );
+    if(expoPushToken){
+      buildNotification( Notifications, updateData[0], 2)
+      buildNotification( Notifications, updateData[1], 4)
+    }
 
     return () => {
       Notifications.removeNotificationSubscription(notificationListener.current);
       Notifications.removeNotificationSubscription(responseListener.current);
     };
   }, [expoPushToken]);
+
+  useEffect(() => {
+    const subscription = Notifications.addNotificationResponseReceivedListener(response => {
+      const data = response.notification.request.content.data;
+      // Linking.openURL(url);
+      console.log(data)
+    });
+    return () => subscription.remove();
+  }, [])
 
   useEffect(() => {
     let isApiSubscribed = true;
