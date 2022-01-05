@@ -42,6 +42,11 @@ export default function Root() {
           options={{
             title: 'HOME',
           }}
+          screenOptions={{
+            headerRight: () => (
+              <GoToMyProcesures/>
+            )
+          }}
         />
 
         <RootStack.Screen

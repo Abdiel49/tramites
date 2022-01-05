@@ -3,13 +3,16 @@ import { View, Text } from 'react-native'
 import { getLocalData } from '../../services/localStorage'
 import ProcedureItem from './ProcedureItem'
 
-const MyProcedures = () => {
+const MyProcedures = ({ navigation }) => {
 
   const [myProcedures, setMyProcedures] = useState({})
   const [procedureKeys, setProcedureKeys] = useState([])
   const key = 'my-procedures';
 
   useEffect(() => {
+    navigation.setOptions({
+      headerRight: ''
+    });
     let subscribed = true;
     getLocalData(key)
     .then(data => {
@@ -27,13 +30,14 @@ const MyProcedures = () => {
   return (
     <View>
       {
-        procedureKeys && procedureKeys.map(( item, index ) => (
+        procedureKeys ? procedureKeys.map(( item, index ) => (
           <ProcedureItem
             key={index}
             data={myProcedures[item]}
           />
 
         ))
+        : <View> aqui no hay nada </View>
       }
       
     </View>

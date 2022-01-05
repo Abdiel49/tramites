@@ -14,7 +14,9 @@ const Tramite = ({ route, navigation }) => {
   useEffect(() => {
     navigation.setOptions({
       title: info.titulo,
+      headerRight:''
     });
+
   }, []);
 
   const [tramitesStorage, setTramitesStorage] = useState([]);
