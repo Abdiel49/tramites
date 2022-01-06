@@ -6,8 +6,10 @@ import Home from '../components/home/HomeScreen';
 import Procedure from '../components/procedure/ProcedureScreen';
 import Tramite from '../components/tramite/TramiteScreen';
 import MapScreen from '../components/maps/MapScreen'
-import { StatusBar } from 'react-native';
 import Calendar from '../components/calendar/Calendar';
+import { StatusBar} from 'react-native';
+import MyProcedures from '../components/myProcedures/MyProcedures';
+import GoToMyProcesures from '../components/myProcedures/GoToMyProcesures';
 
 const RootStack = createStackNavigator();
 
@@ -28,6 +30,9 @@ export default function Root() {
           headerTitleStyle: {
             fontWeight: 'bold',
           },
+          headerRight: () => (
+            <GoToMyProcesures/>
+          )
         }}
       >
 
@@ -36,6 +41,11 @@ export default function Root() {
           component={ Home } 
           options={{
             title: 'HOME',
+          }}
+          screenOptions={{
+            headerRight: () => (
+              <GoToMyProcesures/>
+            )
           }}
         />
 
@@ -60,6 +70,11 @@ export default function Root() {
         <RootStack.Screen
           name="Nuevo Recordatorio" 
           component={ Calendar }
+        />
+
+        <RootStack.Screen
+          name="my-procedures" 
+          component={ MyProcedures }
         />
       </RootStack.Navigator>
     </NavigationContainer>

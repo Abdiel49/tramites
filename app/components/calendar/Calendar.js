@@ -24,6 +24,12 @@ const Calendar = ({navigation, route}) => {
     }
 
     useEffect(()=>{
+        navigation.setOptions({
+            headerRight: ''
+        });
+    },[]);
+
+    useEffect(()=>{
         if (date) {
             const [dia, mes, anio] = [convertirDig(date.getDate()), 
                 convertirDig(date.getMonth()+1),

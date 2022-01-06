@@ -25,7 +25,7 @@ Notifications.setNotificationHandler({
   handleNotification: async () => ({
     shouldShowAlert: true,
     shouldPlaySound: true,
-    shouldSetBadge: false,
+    shouldSetBadge: true,
   }),
 });
 
@@ -37,7 +37,7 @@ const Home = ({ navigation }) => {
   const [apiBase, setApiBase] = useState(networkEnv);
   const [tramitesFilt, setTramitesFilt] = useState(null);
 
-  const [expoPushToken, setExpoPushToken] = useState('');
+  const [expoPushToken, setExpoPushToken] = useState();
   const [notification, setNotification] = useState(false);
   const [calendarID, setCalendarID] = useState(null);
   const notificationListener = useRef();
@@ -45,6 +45,7 @@ const Home = ({ navigation }) => {
 
   useEffect(() => {
     registerForPushNotificationsAsync( Notifications ).then(token => setExpoPushToken(token));
+    
 
     notificationListener.current = Notifications.addNotificationReceivedListener(notification => {
       setNotification(notification);
@@ -56,10 +57,16 @@ const Home = ({ navigation }) => {
     const data = {
       title: "Hey Parece que tienes tramites por terminar 📬",
       body: 'Tienes undefinet tramites pendientes',
-      data: { data: 'goes here' },
-    };
+      subtitle: 'hey soy un subtitulo',
+      message: 'hey soy un mesaje',
+      data: {
 
-    schedulePushNotification( Notifications, data, 4 );
+      },
+      // data: { data: 'goes here' },
+    };
+    if ( expoPushToken ){
+      schedulePushNotification( Notifications, data, 4 );
+    }
 
     return () => {
       Notifications.removeNotificationSubscription(notificationListener.current);
@@ -91,7 +98,7 @@ const Home = ({ navigation }) => {
       if (status === 'granted') {
         const defaultCalendarSource = { isLocalAccount: true, name: 'Expo Calendar' };
         
-        if (!calendarID) {
+        /* if (!calendarID) {
           const newCalendarID = await Calendar.createCalendarAsync({
             title: 'Expo Calendar',
             color: 'blue',
@@ -102,7 +109,7 @@ const Home = ({ navigation }) => {
             accessLevel: Calendar.CalendarAccessLevel.OWNER,
           });
           setCalendarID(newCalendarID);
-        }
+        } */
 
         /* Calendar.createEventAsync(newCalendarID,{
           startDate: new Date(),
