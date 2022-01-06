@@ -6,7 +6,10 @@ import Home from '../components/home/HomeScreen';
 import Procedure from '../components/procedure/ProcedureScreen';
 import Tramite from '../components/tramite/TramiteScreen';
 import MapScreen from '../components/maps/MapScreen'
-import { StatusBar } from 'react-native';
+import { StatusBar, Text, TouchableOpacity, View } from 'react-native';
+import TasksIcon from '../components/icons/TasksIcon';
+import MyProcedures from '../components/myProcedures/MyProcedures';
+import GoToMyProcesures from '../components/myProcedures/GoToMyProcesures';
 
 const RootStack = createStackNavigator();
 
@@ -27,6 +30,9 @@ export default function Root() {
           headerTitleStyle: {
             fontWeight: 'bold',
           },
+          headerRight: () => (
+            <GoToMyProcesures/>
+          )
         }}
       >
 
@@ -35,6 +41,11 @@ export default function Root() {
           component={ Home } 
           options={{
             title: 'HOME',
+          }}
+          screenOptions={{
+            headerRight: () => (
+              <GoToMyProcesures/>
+            )
           }}
         />
 
@@ -54,6 +65,11 @@ export default function Root() {
         <RootStack.Screen
           name="maps" 
           component={ MapScreen }
+        />
+
+        <RootStack.Screen
+          name="my-procedures" 
+          component={ MyProcedures }
         />
       </RootStack.Navigator>
     </NavigationContainer>
