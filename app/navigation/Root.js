@@ -7,6 +7,7 @@ import Procedure from '../components/procedure/ProcedureScreen';
 import Tramite from '../components/tramite/TramiteScreen';
 import MapScreen from '../components/maps/MapScreen'
 import { StatusBar } from 'react-native';
+import Calendar from '../components/calendar/Calendar';
 
 const RootStack = createStackNavigator();
 
@@ -54,6 +55,11 @@ export default function Root() {
         <RootStack.Screen
           name="maps" 
           component={ MapScreen }
+        />
+
+        <RootStack.Screen
+          name="Nuevo Recordatorio" 
+          component={ Calendar }
         />
       </RootStack.Navigator>
     </NavigationContainer>

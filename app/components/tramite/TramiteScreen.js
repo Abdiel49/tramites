@@ -99,6 +99,7 @@ const Tramite = ({ route, navigation }) => {
                           [sub.id]: !tramitesStorage[sub.id],
                         })
                       }
+                      title={info.titulo}
                     />
                   )))
                 }
