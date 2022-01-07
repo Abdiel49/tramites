@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { View, Text } from 'react-native'
+import { View } from 'react-native'
 import { getLocalData } from '../../services/localStorage'
 import ProcedureItem from './ProcedureItem'
 
@@ -16,8 +16,10 @@ const MyProcedures = ({ navigation }) => {
     let subscribed = true;
     getLocalData(key)
     .then(data => {
-      setMyProcedures(data);
-      setProcedureKeys(Object.keys(data))
+      if (data) {
+        setMyProcedures(data);
+        setProcedureKeys(Object.keys(data))
+      }
     })
     .catch( err => console.error(err))
     return () => { 

@@ -19,7 +19,7 @@ import { registerForPushNotificationsAsync } from "../notifications/registerForP
 import { schedulePushNotification } from "../notifications/schedulePushNotification";
 
 import * as Calendar from 'expo-calendar';
-import { useNavigation } from "@react-navigation/native";
+import { getLocalData, storeLocalData } from "../../services/localStorage";
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -29,9 +29,6 @@ Notifications.setNotificationHandler({
   }),
 });
 
-
-
-
 const Home = ({ navigation }) => {
   const [tramites, setTramites] = useState(null);
   const [apiBase, setApiBase] = useState(networkEnv);
@@ -39,9 +36,34 @@ const Home = ({ navigation }) => {
 
   const [expoPushToken, setExpoPushToken] = useState();
   const [notification, setNotification] = useState(false);
-  const [calendarID, setCalendarID] = useState(null);
   const notificationListener = useRef();
   const responseListener = useRef();
+
+  useEffect(()=> {
+    (async () => {
+      const { status } = await Calendar.requestCalendarPermissionsAsync();
+      if (status === 'granted') {
+        const defaultCalendarSource = { isLocalAccount: true, name: 'Expo Calendar' };
+        const idCal = await getLocalData('calendar-id')
+        .then((data)=>{
+          return data;
+        })
+        if (!idCal) {
+          console.log("cread 12");
+          const newCalendarID = await Calendar.createCalendarAsync({
+            title: 'Expo Calendar',
+            color: 'blue',
+            entityType: Calendar.EntityTypes.EVENT,
+            source: defaultCalendarSource,
+            name: 'internalCalendarName',
+            ownerAccount: 'personal',
+            accessLevel: Calendar.CalendarAccessLevel.OWNER,
+          });
+          await storeLocalData('calendar-id',newCalendarID);
+        }
+      }
+    })();
+  },[]);
 
   useEffect(() => {
     registerForPushNotificationsAsync( Notifications ).then(token => setExpoPushToken(token));
@@ -91,35 +113,6 @@ const Home = ({ navigation }) => {
       isApiSubscribed = false;
     };
   }, [apiBase]);
-
-  useEffect(()=> {
-    (async () => {
-      const { status } = await Calendar.requestCalendarPermissionsAsync();
-      if (status === 'granted') {
-        const defaultCalendarSource = { isLocalAccount: true, name: 'Expo Calendar' };
-        
-        /* if (!calendarID) {
-          const newCalendarID = await Calendar.createCalendarAsync({
-            title: 'Expo Calendar',
-            color: 'blue',
-            entityType: Calendar.EntityTypes.EVENT,
-            source: defaultCalendarSource,
-            name: 'internalCalendarName',
-            ownerAccount: 'personal',
-            accessLevel: Calendar.CalendarAccessLevel.OWNER,
-          });
-          setCalendarID(newCalendarID);
-        } */
-
-        /* Calendar.createEventAsync(newCalendarID,{
-          startDate: new Date(),
-          endDate: new Date(),
-          title: "Entrega de Trabajo",
-          notes: "Este es un requisito"
-        }); */
-      }
-    })();
-  },[]);
 
   return (
     <View>
