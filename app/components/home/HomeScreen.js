@@ -97,22 +97,38 @@ const Home = ({ navigation }) => {
     responseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
       console.log(response);
     });
+    (async () => {
+      if(expoPushToken){
+        if (updateData) {
+          const fechaActualNuevos = 
+          await getLocalData('fecha-nuevos')
+          .then((data) => {
+            return data
+          });
+          const fechaActualizacionNuevos = new Date(updateData[0].updateAt);
+          const fechaActualTramiteAct = 
+          await getLocalData('fecha-actualizados')
+          .then((data) => {
+            return data
+          });
+          
+          const fechaNuevos =  new Date(fechaActualNuevos);
+          const fechaActualizaciones =  new Date(fechaActualTramiteAct);
+          
+          const fechaActualizacionTramitesAct = new Date(updateData[1].updateAt);
 
-    if(expoPushToken){
-      if (updateData) {
-        const fechaActualNuevos = new Date(); //traer la ultima fecha de actualizacion de nuevos tramites 
-        const fechaActualizacionNuevos = new Date(updateData[0].updateAt);
-        const fechaActualTramiteAct = new Date();//traer la ultima fecha de actualizacion de tramites actualizados
-        const fechaActualizacionTramitesAct = new Date(updateData[1].updateAt);
-        if (fechaActualizacionNuevos > fechaActualNuevos) {
-          buildNotification( Notifications, updateData[0], 2)
-        }
-        if (fechaActualizacionTramitesAct >= fechaActualTramiteAct) {
-
-          buildNotification( Notifications, updateData[1], 4)
+          if (!fechaActualNuevos || fechaActualizacionNuevos > fechaNuevos) {
+            buildNotification( Notifications, updateData[0], 2);
+            await storeLocalData('fecha-nuevos',fechaActualizacionNuevos);
+          }
+          
+          if (!fechaActualTramiteAct || fechaActualizacionTramitesAct > fechaActualizaciones) {
+            buildNotification( Notifications, updateData[1], 4);
+            await storeLocalData('fecha-actualizados',fechaActualizacionTramitesAct);
+          }
         }
       }
-    }
+    })();
 
     return () => {
       Notifications.removeNotificationSubscription(notificationListener.current);
