@@ -17,7 +17,6 @@ import { networkEnv } from "../../../network";
 import Buscador from "./Buscador";
 import { registerForPushNotificationsAsync } from "../notifications/registerForPushNotificationsAsyc";
 
-import updateData from '../../assets/updateData.json'
 import { buildNotification } from "../notifications/buildNotification";
 
 Notifications.setNotificationHandler({
@@ -38,6 +37,26 @@ const Home = ({ navigation }) => {
   const notificationListener = useRef();
   const responseListener = useRef();
   
+  const [updateData, setUpdateData] = useState(null);
+
+
+  useEffect(()=>{
+    let isApiSubscribed = true;
+    axios
+      .get(`${apiBase}/api/tramites/update`)
+      .then((res) => {
+        if (isApiSubscribed) {
+          setUpdateData(res.data);
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+    return () => {
+      isApiSubscribed = false;
+    };
+  },[])
+
   useEffect(() => {
     registerForPushNotificationsAsync( Notifications ).then(token => setExpoPushToken(token));
 
@@ -50,8 +69,19 @@ const Home = ({ navigation }) => {
     });
 
     if(expoPushToken){
-      buildNotification( Notifications, updateData[0], 2)
-      buildNotification( Notifications, updateData[1], 4)
+      if (updateData) {
+        const fechaActualNuevos = new Date(); //traer la ultima fecha de actualizacion de nuevos tramites 
+        const fechaActualizacionNuevos = new Date(updateData[0].updateAt);
+        const fechaActualTramiteAct = new Date();//traer la ultima fecha de actualizacion de tramites actualizados
+        const fechaActualizacionTramitesAct = new Date(updateData[1].updateAt);
+        if (fechaActualizacionNuevos > fechaActualNuevos) {
+          buildNotification( Notifications, updateData[0], 2)
+        }
+        if (fechaActualizacionTramitesAct >= fechaActualTramiteAct) {
+
+          buildNotification( Notifications, updateData[1], 4)
+        }
+      }
     }
 
     return () => {
