@@ -11,8 +11,6 @@ export default function Progress({
   
   const [percent, setPercent] = useState( 0 );
   const [progressColor, setProgressColor] = useState(colors.blue_dark)
-  // const progressColor = isBgDark ? colors.light2 : colors.green;
-  // const bgProgressColor = isBgDark ? colors.
 
   useEffect(() => {
     let items = 0;

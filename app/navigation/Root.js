@@ -6,8 +6,8 @@ import Home from '../components/home/HomeScreen';
 import Procedure from '../components/procedure/ProcedureScreen';
 import Tramite from '../components/tramite/TramiteScreen';
 import MapScreen from '../components/maps/MapScreen'
-import { StatusBar, Text, TouchableOpacity, View } from 'react-native';
-import TasksIcon from '../components/icons/TasksIcon';
+import Calendar from '../components/calendar/Calendar';
+import { StatusBar} from 'react-native';
 import MyProcedures from '../components/myProcedures/MyProcedures';
 import GoToMyProcesures from '../components/myProcedures/GoToMyProcesures';
 
@@ -65,6 +65,11 @@ export default function Root() {
         <RootStack.Screen
           name="maps" 
           component={ MapScreen }
+        />
+
+        <RootStack.Screen
+          name="Nuevo Recordatorio" 
+          component={ Calendar }
         />
 
         <RootStack.Screen

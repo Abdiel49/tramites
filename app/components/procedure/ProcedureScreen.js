@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { View, SafeAreaView, ScrollView } from "react-native";
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getData, storeData } from '../../services/localStorage'
 
 import StepFooter from "../footer/StepFooter";
@@ -21,27 +20,6 @@ export default function Procedure() {
   };
   
   const [tramitesStorage, setTramitesStorage] = useState( initState );
-  // get data from asyngStorage
-  // const getData = async () => {
-  //   try {
-  //     const value = await AsyncStorage.getItem('@Tramites')
-  //     if(value !== null) {
-  //       return JSON.parse( value );
-  //     }
-  //     else return null;
-  //   } catch(e) {
-  //     console.error(e)
-  //   }
-  // }
-  // store data into asyngStorage
-  // const storeData = async (value) => {
-  //   try {
-  //     const jsonValue = JSON.stringify(value)
-  //     await AsyncStorage.setItem('@Tramites', jsonValue)
-  //   } catch (e) {
-  //     console.error( e )
-  //   }
-  // };
 
   // load data when component is mounted
   useEffect(() => {

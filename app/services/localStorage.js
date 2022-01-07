@@ -6,7 +6,7 @@ export const getLocalData = (key) => {
       if (value !== null) {
         res(JSON.parse(value)); 
       } else {
-        rej(null);
+        res(null);
       }
   })
 };
