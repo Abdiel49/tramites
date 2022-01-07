@@ -1,0 +1,37 @@
+[
+    {
+        "updateAt": "Mon Jan 01 2022 20:51:10 GMT-0400",
+        "descripcion":  "nuevos",
+        "contenido": [
+            "tramite0",
+            "tramite1",
+            "tramite2"
+        ] 
+    },
+    {
+        "updateAt": "Mon Jan 03 2022 20:51:10 GMT-0400",
+        "descripcion": "actualizados",
+        "contenido": [
+            {
+                "subcont": "Tramite uno",
+                "nuevo" : "Mapas añadidos0"
+            },
+            {
+                "subcont": "Tramite dos",
+                "nuevo" : "Mapas añadidos1"
+            },
+            {
+                "subcont": "Tramite tres",
+                "nuevo" : "Mapas añadidos2"
+            },
+            {
+                "subcont": "Tramite cuatro",
+                "nuevo" : "Mapas añadidos3"
+            },
+            {
+                "subcont": "Tramite cinco",
+                "nuevo" : "Mapas añadidos4"
+            }
+        ] 
+    }    
+]

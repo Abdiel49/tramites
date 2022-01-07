@@ -16,7 +16,8 @@ import * as Notifications from 'expo-notifications';
 import { networkEnv } from "../../../network";
 import Buscador from "./Buscador";
 import { registerForPushNotificationsAsync } from "../notifications/registerForPushNotificationsAsyc";
-import { schedulePushNotification } from "../notifications/schedulePushNotification";
+
+import { buildNotification } from "../notifications/buildNotification";
 
 import * as Calendar from 'expo-calendar';
 import { getLocalData, storeLocalData } from "../../services/localStorage";
@@ -38,6 +39,26 @@ const Home = ({ navigation }) => {
   const [notification, setNotification] = useState(false);
   const notificationListener = useRef();
   const responseListener = useRef();
+  
+  const [updateData, setUpdateData] = useState(null);
+
+
+  useEffect(()=>{
+    let isApiSubscribed = true;
+    axios
+      .get(`${apiBase}/api/tramites/update`)
+      .then((res) => {
+        if (isApiSubscribed) {
+          setUpdateData(res.data);
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+    return () => {
+      isApiSubscribed = false;
+    };
+  },[])
 
   useEffect(()=> {
     (async () => {
@@ -76,25 +97,53 @@ const Home = ({ navigation }) => {
     responseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
       console.log(response);
     });
-    const data = {
-      title: "Hey Parece que tienes tramites por terminar 📬",
-      body: 'Tienes undefinet tramites pendientes',
-      subtitle: 'hey soy un subtitulo',
-      message: 'hey soy un mesaje',
-      data: {
+    (async () => {
+      if(expoPushToken){
+        if (updateData) {
+          const fechaActualNuevos = 
+          await getLocalData('fecha-nuevos')
+          .then((data) => {
+            return data
+          });
+          const fechaActualizacionNuevos = new Date(updateData[0].updateAt);
+          const fechaActualTramiteAct = 
+          await getLocalData('fecha-actualizados')
+          .then((data) => {
+            return data
+          });
+          
+          const fechaNuevos =  new Date(fechaActualNuevos);
+          const fechaActualizaciones =  new Date(fechaActualTramiteAct);
+          
+          const fechaActualizacionTramitesAct = new Date(updateData[1].updateAt);
 
-      },
-      // data: { data: 'goes here' },
-    };
-    if ( expoPushToken ){
-      schedulePushNotification( Notifications, data, 4 );
-    }
+          if (!fechaActualNuevos || fechaActualizacionNuevos > fechaNuevos) {
+            buildNotification( Notifications, updateData[0], 2);
+            await storeLocalData('fecha-nuevos',fechaActualizacionNuevos);
+          }
+          
+          if (!fechaActualTramiteAct || fechaActualizacionTramitesAct > fechaActualizaciones) {
+            buildNotification( Notifications, updateData[1], 4);
+            await storeLocalData('fecha-actualizados',fechaActualizacionTramitesAct);
+          }
+        }
+      }
+    })();
 
     return () => {
       Notifications.removeNotificationSubscription(notificationListener.current);
       Notifications.removeNotificationSubscription(responseListener.current);
     };
   }, [expoPushToken]);
+
+  useEffect(() => {
+    const subscription = Notifications.addNotificationResponseReceivedListener(response => {
+      const data = response.notification.request.content.data;
+      // Linking.openURL(url);
+      console.log(data)
+    });
+    return () => subscription.remove();
+  }, [])
 
   useEffect(() => {
     let isApiSubscribed = true;
