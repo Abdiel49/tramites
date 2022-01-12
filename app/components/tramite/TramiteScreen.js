@@ -6,6 +6,7 @@ import Progress from "../progressBar/Progress";
 import Requisito from "./Requisito";
 import GoMapsButton from "../maps/GoMapsButton";
 import tramiteStyle from "./styles/tramiteItem";
+import { getLocalData, storeLocalData } from "../../services/localStorage";
 
 const Tramite = ({ route, navigation }) => {
   const { tramite: info } = route.params;
@@ -13,16 +14,23 @@ const Tramite = ({ route, navigation }) => {
   useEffect(() => {
     navigation.setOptions({
       title: info.titulo,
+      headerRight:''
     });
+
   }, []);
 
   const [tramitesStorage, setTramitesStorage] = useState([]);
+  const [procedureStored, setProcedureStored] = useState(false)
 
   const generarChecks = () => {
-    let listaChecks = [info.requisitos.length];
-    for (let i = 0; i < info.requisitos.length; i++) {
-      listaChecks[i] = false;
+    let listaChecks = [];
+    for (let i = 0; i < info.datos.length; i++) {
+      let dato = info.datos[i];
+      for (let j = 0; j < dato.contenido.length; j++) {
+        listaChecks.push(false);
+      }
     }
+
     return listaChecks;
   };
 
@@ -51,6 +59,35 @@ const Tramite = ({ route, navigation }) => {
     }
   };
 
+  const someProcedureChecked = () => {
+    const keys = Object.keys(tramitesStorage);
+    const somechecked = keys.find(item => tramitesStorage[item] == true) || false;
+ 
+    if( somechecked ){
+      storeProcedure()
+    }
+  }
+
+  const storeProcedure = async () => {
+    if(!procedureStored){
+      if(someProcedureChecked){
+        try {
+          const key = 'my-procedures';
+          const myProcedures = await getLocalData( key );
+          const value = {
+            ...myProcedures,
+            [info.nombre]: info
+          }
+          await storeLocalData(key, value);
+          setProcedureStored(true);
+        } catch (e) {
+          console.error(e)
+        }
+
+      }
+    }
+  }
+
   useEffect(() => {
     async function loadData() {
       let data = await getData();
@@ -61,6 +98,7 @@ const Tramite = ({ route, navigation }) => {
 
   useEffect(() => {
     storeData(tramitesStorage);
+    someProcedureChecked();
   }, [tramitesStorage]);
 
   return (
@@ -77,23 +115,31 @@ const Tramite = ({ route, navigation }) => {
               !!mapData?.haveLocation && <GoMapsButton data={mapData} />
             }
           </View>
-          <Text style={{ fontWeight: "bold" }}>Requisitos:</Text>
           {
-            info.requisitos.map((req) => (
-              <Requisito
-                key={req.id}
-                style={tramiteStyle.stepCont2}
-                req={req.requisito}
-                check={tramitesStorage[req.id]}
-                mapData={req.mapData || {}}
-                onChecked={() =>
-                  setTramitesStorage({
-                    ...tramitesStorage,
-                    [req.id]: !tramitesStorage[req.id],
-                  })
+            info.datos.map((cont) => (
+              <View key={cont.id}>
+                <Text style={{ fontWeight: "bold", fontSize: 20 }}>{cont.nombreCont}</Text>
+                {
+                  (cont.contenido.map((sub) => (
+                    <Requisito
+                      key={sub.id}
+                      style={tramiteStyle.stepCont2}
+                      req={sub.subCont}
+                      check={tramitesStorage[sub.id]}
+                      mapData={sub.mapData || {}}
+                      onChecked={() =>
+                        setTramitesStorage({
+                          ...tramitesStorage,
+                          [sub.id]: !tramitesStorage[sub.id],
+                        })
+                      }
+                      title={info.titulo}
+                    />
+                  )))
                 }
-              />
-          ))}
+              </View>
+            ))
+          }
           <View style={{ padding: 50 }}></View>
         </ScrollView>
       </SafeAreaView>

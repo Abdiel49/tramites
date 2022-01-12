@@ -19,7 +19,10 @@ export default function MapScreen({ route, navigation }) {
   })
 
   useEffect(() => {
-    navigation.setOptions({title: stepTitle});
+    navigation.setOptions({
+      title: stepTitle,
+      headerRight: ''
+    });
   }, [])
 
   const openMapApplication = () => {
