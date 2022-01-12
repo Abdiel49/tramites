@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { View } from 'react-native'
+import { View, Text, StyleSheet} from 'react-native'
 import { getLocalData } from '../../services/localStorage'
 import ProcedureItem from './ProcedureItem'
 
@@ -11,7 +11,8 @@ const MyProcedures = ({ navigation }) => {
 
   useEffect(() => {
     navigation.setOptions({
-      headerRight: ''
+      headerRight: '',
+      title: 'Mis Tramites'
     });
     let subscribed = true;
     getLocalData(key)
@@ -30,18 +31,27 @@ const MyProcedures = ({ navigation }) => {
   return (
     <View>
       {
-        procedureKeys ? procedureKeys.map(( item, index ) => (
+        procedureKeys && procedureKeys.length > 0? procedureKeys.map(( item, index ) => (
           <ProcedureItem
             key={index}
             data={myProcedures[item]}
           />
 
         ))
-        : <View> aqui no hay nada </View>
+        : <Text style={styles.textoInfo}> Parece que no hay nada por acá, inicie el seguimiento a un tramite </Text>
       }
       
     </View>
   )
 }
 
-export default MyProcedures
+export default MyProcedures;
+
+const styles = StyleSheet.create({
+  textoInfo: {
+    fontSize: 30,
+    marginVertical: '30%',
+    marginHorizontal: 20,
+    textAlign: 'center'
+  }
+});
